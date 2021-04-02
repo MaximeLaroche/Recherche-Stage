@@ -1,0 +1,2347 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://nexusinno.bamboohr.com/jobs/view.php?id=59 -->
+<html lang="en" data-locale="en_US" prefix="og: http://ogp.me/ns#" class="js cssfilters js-focus-visible" data-js-focus-visible=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--mui-inject-first--><style data-jss="" data-meta="makeStyles">
+.jss14 {
+  display: flex;
+  align-items: center;
+}
+.jss15 {
+  fill: #999;
+  display: inline-block;
+  line-height: 0;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+.jss16 {
+  color: #999;
+  display: inline-block;
+  font-size: 15px;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.jss12 {
+  display: inline-block;
+  position: relative;
+}
+.jss13 {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+}
+</style>
+	
+	<script type="text/javascript" async="" src="./BambooHR_files/analytics.js.téléchargement"></script><script type="text/javascript" async="" src="./BambooHR_files/recaptcha__en_gb.js.téléchargement" crossorigin="anonymous" integrity="sha384-3MPwU3LK5/XtmLFCToba+GsIwy1423f/yPN8dLTkPbNuymjXXTdfc3gxIrA5TjNz"></script><script async="" src="./BambooHR_files/gtm.js.téléchargement"></script><script async="" src="./BambooHR_files/pendo.js.téléchargement"></script><script type="text/javascript">
+(function(ENV, TOKEN) {
+	var isSupportedBrowser = true;
+	var enabledEnvironments = ['prod', 'stage'];
+	var isEnabled = isSupportedBrowser && enabledEnvironments.indexOf(ENV) > -1;
+	var isMobile = false;
+
+	function checkIgnoreCases(isUncaught, args, payload) {
+		var isRemoteUncaught = isIgnoringRemoteUncaught(isUncaught, payload);
+		var isIgnoringUrl = isIgnoringUrlSegment(payload);
+		var isIgnoringBots = isBot();
+
+		return isRemoteUncaught || isIgnoringUrl || isIgnoringBots;
+	}
+
+	/**
+	 * Test for bots via the userAgent
+	**/
+	function isBot() {
+		// Collection of Bots to ignore
+		var bots = ['JobBot'];
+		var userAgent = window.navigator.userAgent || '';
+
+		// Check if the userAgent contains a bot
+		var findBots = bots.filter(function(bot) {
+			return userAgent.indexOf(bot) !== -1;
+		});
+
+		return findBots.length;
+	}
+
+	function isIgnoringUrlSegment(payload) {
+		var url = payload.request.url;
+
+		var ignoreMessage = [
+				/WalkMeAPI/,
+				/_walkmeInternals/,
+				/file:\/\//
+			].some(function(regex) {
+				return regex.test(url);
+			});
+
+		return ignoreMessage;
+	}
+
+	function isIgnoringRemoteUncaught(isUncaught, payload) {
+		// Trace might not exist, if not just return false
+		if (
+			payload &&
+			payload.body &&
+			payload.body.trace
+		) {
+			var filename = payload.body.trace.frames[0].filename;
+
+			// Ignore uncaught errors that are not from any bamboohr domains
+			return isUncaught && !filename.match(/bamboohr/);
+		}
+
+		return false;
+	}
+
+	var locRegex = /^(https?):\/\/[a-z._-]*\.bamboohr\.[^\/]+(.*)/i;
+	var buildVersionRegex = /^\/\d{2}\.\d{4}\.\d{6}-\w{7}\/js\//;
+	var distJsRegex = /\.dist\.js$/i;
+	var _rollbarConfig = {
+			accessToken: TOKEN,
+			captureUncaught: isEnabled,
+			captureUnhandledRejections: isEnabled,
+			enabled: isEnabled,
+			scrubTelemetryInputs: true,
+			itemsPerMinute: 5,
+			maxItems: 15,
+			rollbarJsUrl: "//resources.bamboohr.com/21.0129.162432-101a115/js/rollbar.js/rollbar.min.js",
+			payload: {
+				environment: ENV + '-' + (isMobile ? 'mobile' : 'desktop'),
+				client: {
+					javascript: {
+						source_map_enabled: true,
+						code_version: '21.0129.162432-101a115',
+						guess_uncaught_frames: true
+					}
+				}
+			},
+			plugins: {
+				jquery: {
+					ignoreAjaxErrors: true
+				}
+			},
+			ignoredMessages: ['Script error.', 'Script error'], // ignore CORS issues (confirmed by rollbarjs devs)
+			checkIgnore: checkIgnoreCases,
+			transform: function(payload) {
+				var trace = payload.body.trace;
+				if (trace && Array.isArray(trace.frames)) {
+					trace.frames.forEach(function(frame) {
+						var filename = frame.filename;
+						if (typeof filename === 'string') {
+							var m = locRegex.exec(filename);
+
+							if (m) {
+								var protocol = m[1];
+								var path = m[2];
+
+								if (
+									distJsRegex.test(path) &&
+									buildVersionRegex.test(path)
+								) {
+									path = path.replace(buildVersionRegex, '/js/');
+								}
+
+								frame.filename = protocol + '://dynamichost' + path;
+							}
+						}
+					});
+				}
+			}
+		};
+
+	// Rollbar Snippet
+	!function(r){var e={};function o(n){if(e[n])return e[n].exports;var t=e[n]={i:n,l:!1,exports:{}};return r[n].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=r,o.c=e,o.d=function(r,e,n){o.o(r,e)||Object.defineProperty(r,e,{enumerable:!0,get:n})},o.r=function(r){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(r,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(r,"__esModule",{value:!0})},o.t=function(r,e){if(1&e&&(r=o(r)),8&e)return r;if(4&e&&"object"==typeof r&&r&&r.__esModule)return r;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:r}),2&e&&"string"!=typeof r)for(var t in r)o.d(n,t,function(e){return r[e]}.bind(null,t));return n},o.n=function(r){var e=r&&r.__esModule?function(){return r.default}:function(){return r};return o.d(e,"a",e),e},o.o=function(r,e){return Object.prototype.hasOwnProperty.call(r,e)},o.p="",o(o.s=0)}([function(r,e,o){"use strict";var n=o(1),t=o(5);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdn.rollbar.com/rollbarjs/refs/tags/v2.19.4/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,e,o){"use strict";var n=o(2),t=o(3);function a(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}var l=0;function i(r,e){this.options=r,this._rollbarOldOnError=null;var o=l++;this.shimId=function(){return o},"undefined"!=typeof window&&window._rollbarShims&&(window._rollbarShims[o]={handler:e,messages:[]})}var s=o(4),d=function(r,e){return new i(r,e)},c=function(r){return new s(d,r)};function u(r){return a((function(){var e=this,o=Array.prototype.slice.call(arguments,0),n={shim:e,method:r,args:o,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)}))}i.prototype.loadFull=function(r,e,o,n,t){var l=!1,i=e.createElement("script"),s=e.getElementsByTagName("script")[0],d=s.parentNode;i.crossOrigin="",i.src=n.rollbarJsUrl,o||(i.async=!0),i.onload=i.onreadystatechange=a((function(){if(!(l||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){i.onload=i.onreadystatechange=null;try{d.removeChild(i)}catch(r){}l=!0,function(){var e;if(void 0===r._rollbarDidLoad){e=new Error("rollbar.js did not load");for(var o,n,a,l,i=0;o=r._rollbarShims[i++];)for(o=o.messages||[];n=o.shift();)for(a=n.args||[],i=0;i<a.length;++i)if("function"==typeof(l=a[i])){l(e);break}}"function"==typeof t&&t(e)}()}})),d.insertBefore(i,s)},i.prototype.wrap=function(r,e,o){try{var n;if(n="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){o&&"function"==typeof o&&o.apply(this,arguments);try{return r.apply(this,arguments)}catch(o){var e=o;throw e&&("string"==typeof e&&(e=new String(e)),e._rollbarContext=n()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e),e}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(e){return r}};for(var p="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","),f=0;f<p.length;++f)i.prototype[p[f]]=u(p[f]);r.exports={setupShim:function(r,e){if(r){var o=e.globalAlias||"Rollbar";if("object"==typeof r[o])return r[o];r._rollbarShims={},r._rollbarWrappedError=null;var l=new c(e);return a((function(){e.captureUncaught&&(l._rollbarOldOnError=r.onerror,n.captureUncaughtExceptions(r,l,!0),e.wrapGlobalEventHandlers&&t(r,l,!0)),e.captureUnhandledRejections&&n.captureUnhandledRejections(r,l,!0);var a=e.autoInstrument;return!1!==e.enabled&&(void 0===a||!0===a||"object"==typeof a&&a.network)&&r.addEventListener&&(r.addEventListener("load",l.captureLoad.bind(l)),r.addEventListener("DOMContentLoaded",l.captureDomContentLoaded.bind(l))),r[o]=l,l}))()}},Rollbar:c}},function(r,e,o){"use strict";function n(r,e,o,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null);var t=e.handleUncaughtException.apply(e,n);o&&o.apply(r,n),"anonymous"===t&&(e.anonymousErrorsPending+=1)}r.exports={captureUncaughtExceptions:function(r,e,o){if(r){var t;if("function"==typeof e._rollbarOldOnError)t=e._rollbarOldOnError;else if(r.onerror){for(t=r.onerror;t._rollbarOldOnError;)t=t._rollbarOldOnError;e._rollbarOldOnError=t}e.handleAnonymousErrors();var a=function(){var o=Array.prototype.slice.call(arguments,0);n(r,e,t,o)};o&&(a._rollbarOldOnError=t),r.onerror=a}},captureUnhandledRejections:function(r,e,o){if(r){"function"==typeof r._rollbarURH&&r._rollbarURH.belongsToShim&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var o,n,t;try{o=r.reason}catch(r){o=void 0}try{n=r.promise}catch(r){n="[unhandledrejection] error getting `promise` from event"}try{t=r.detail,!o&&t&&(o=t.reason,n=t.promise)}catch(r){}o||(o="[unhandledrejection] error getting `reason` from event"),e&&e.handleUnhandledRejection&&e.handleUnhandledRejection(o,n)};n.belongsToShim=o,r._rollbarURH=n,r.addEventListener("unhandledrejection",n)}}}},function(r,e,o){"use strict";function n(r,e,o){if(e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){for(var n=e.addEventListener;n._rollbarOldAdd&&n.belongsToShim;)n=n._rollbarOldAdd;var t=function(e,o,t){n.call(this,e,r.wrap(o),t)};t._rollbarOldAdd=n,t.belongsToShim=o,e.addEventListener=t;for(var a=e.removeEventListener;a._rollbarOldRemove&&a.belongsToShim;)a=a._rollbarOldRemove;var l=function(r,e,o){a.call(this,r,e&&e._rollbar_wrapped||e,o)};l._rollbarOldRemove=a,l.belongsToShim=o,e.removeEventListener=l}}r.exports=function(r,e,o){if(r){var t,a,l="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(t=0;t<l.length;++t)r[a=l[t]]&&r[a].prototype&&n(e,r[a].prototype,o)}}},function(r,e,o){"use strict";function n(r,e){this.impl=r(e,this),this.options=e,function(r){for(var e=function(r){return function(){var e=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,e)}},o="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","),n=0;n<o.length;n++)r[o[n]]=e(o[n])}(n.prototype)}n.prototype._swapAndProcessMessages=function(r,e){var o,n,t;for(this.impl=r(this.options);o=e.shift();)n=o.method,t=o.args,this[n]&&"function"==typeof this[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this[n].apply(this,[t[0],o.ts]):this[n].apply(this,t));return this},r.exports=n},function(r,e,o){"use strict";r.exports=function(r){return function(e){if(!e&&!window._rollbarInitialized){for(var o,n,t=(r=r||{}).globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;o=window._rollbarShims[i++];)n||(n=o.handler),o.handler._swapAndProcessMessages(l,o.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);
+	// End Rollbar Snippet
+})(
+	'prod',
+	'bbd4dc3ee9054297849030f2e674ceff'
+);
+</script>
+	<link rel="dns-prefetch" href="https://resources.bamboohr.com/">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>
+		BambooHR
+	</title>
+
+	<meta name="robots" content="noindex, follow">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta property="og:type" content="website">
+	<meta property="og:url" content="https://nexusinno.bamboohr.com/jobs/view.php?id=59">
+	<meta property="og:title" content="Développeur.se Stagiaire - Été 2021">
+	<meta property="og:description" content="QUELQUES MOTS SUR NEXUS
+ 
+Nexus Innovations est une jeune entreprise montréalaise en génie logiciel comptant une cinquantaine d’employé.e.s. Nous croyons fondamentalement que le bien-être des employé.e.s génère de la valeur ajoutée pour nos partenaires. Ainsi, notre centre de développement, complètemen">
+	<meta property="og:image" content="https://nexusinno.bamboohr.com/jobs/share_image/36">
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://nexusinno.bamboohr.com/jobs/view.php?id=59">
+	<meta property="twitter:title" content="Développeur.se Stagiaire - Été 2021">
+	<meta property="twitter:description" content="QUELQUES MOTS SUR NEXUS
+ 
+Nexus Innovations est une jeune entreprise montréalaise en génie logiciel comptant une cinquantaine d’employé.e.s. Nous croyons fondamentalement que le bien-être des employé.e.s génère de la valeur ajoutée pour nos partenaires. Ainsi, notre centre de développement, complètemen">
+	<meta property="twitter:image" content="https://nexusinno.bamboohr.com/jobs/share_image/36">
+	<meta property="twitter:image:alt" content="Company logo">
+
+	<link type="image/x-icon" href="https://resources.bamboohr.com/21.0129.162432-101a115/images/favicon.ico?cb=e417804e" rel="shortcut icon">
+	<link rel="resource" type="application/l10n" href="https://nexusinno.bamboohr.com/js/pdfjs/web/locale/locale.properties">
+
+	
+
+
+	
+
+
+	
+
+
+			<link id="global-css" type="text/css" rel="stylesheet" href="./BambooHR_files/global.67b55449.dist.css">
+	
+
+
+			<link id="global-jade-css" type="text/css" rel="stylesheet" href="./BambooHR_files/global-jade.599e2d70.dist.css">
+	
+
+
+			<link id="print-css" type="text/css" rel="stylesheet" href="./BambooHR_files/print.css" media="print">
+	
+
+
+			<link id="jobs-css" type="text/css" rel="stylesheet" href="./BambooHR_files/jobs.6865acc5.dist.css">
+	
+
+
+
+	<script type="text/javascript">
+		var DEFAULT_ERROR_MESSAGE = "Uh oh, something went wrong. Please try again or contact support@bamboohr.com";
+		var DEFAULT_PERMISSIONS_ERROR_MESSAGE = "You do not have sufficient permissions for this";
+		var GLOBAL_DATEPICKER_MASK = "dd\x2Fmm\x2Fyy";
+		var GLOBAL_NUMBER_REGEX = "\x5E\x28\x3F\x21\x2D0\x24\x29\x2D\x3F\x28\x3F\x3D\x5B0\x2D9\x5C.\x5D\x29\x28\x3F\x210\x5B0\x2D9\x5D\x29\x28\x3F\x3A\x5Cd\x2B\x7C\x5Cd\x7B1,3\x7D\x28\x3F\x3A,\x5Cd\x7B3\x7D\x29\x2B\x29\x3F\x28\x3F\x3A\x5C.\x5Cd\x2B\x29\x3F\x24";
+		var CSRF_TOKEN = "be2dd7102106736272eecaf00a6f2e6c2cfd4f816d582098993d5f4f801ce89c3ec57c0cc289e63acf155be078b620088602c22d2fe88b2af36a4c16dd82027f";
+		var CAN_EMAIL_FILES_AND_REPORTS = null;
+		var EVENT_TRACKING_DEFINITIONS = null;
+	</script>
+
+	<!-- Modernizr -->
+	<script type="text/javascript" src="./BambooHR_files/modernizr.min.js.téléchargement"></script>
+	<script type="text/javascript" src="./BambooHR_files/vendor.251019e6.dist.js.téléchargement"></script>
+	<script type="text/javascript" src="./BambooHR_files/common.14725093.dist.js.téléchargement"></script>
+		<script type="text/javascript">
+	(function() {
+		Object.defineProperties(window, {
+			ENV: {
+				value: 'prod'
+			},
+			BUILD_VERSION: {
+				value: '21.0129.162432-101a115'
+			},
+			BASE_DOMAIN: {
+				value: 'bamboohr.com'
+			},
+			isarray: {
+				value: Array.isArray
+			}
+		});
+
+		window.BambooHR = window.BambooHR || {};
+
+		Object.defineProperties(window.BambooHR, {
+			env: {
+				value: Object.freeze({
+					val: window.ENV,
+					dev: window.ENV === 'dev',
+					stage: window.ENV === 'stage',
+					prod: window.ENV === 'prod'
+				})
+			}
+		});
+
+		Object.defineProperty(window, 'DOMAIN', {
+			value: 'resources.bamboohr.com'
+		});
+		Object.defineProperty(window, 'ROOT_URL', {
+			value: window.location.protocol + '//' + (window.DOMAIN || window.location.hostname)
+		});
+
+		window.__resManifest = JSON.parse("{\u0022images\\/home.dist.svg\u0022:\u0022images\\/home.dist.svg?cb=14557b2f\u0022,\u0022images\\/i.dist.svg\u0022:\u0022images\\/i.470762d7.dist.svg\u0022,\u0022images\\/product-updates.dist.svg\u0022:\u0022images\\/product-updates.dist.svg?cb=ee0413ff\u0022,\u0022images\\/test.dist.svg\u0022:\u0022images\\/test.dist.svg?cb=80a8f5b8\u0022,\u0022css\\/theme-82AF13.dist.css\u0022:\u0022css\\/theme-82AF13.e100fdb6.dist.css\u0022,\u0022js\\/tinymce_v4.5.6\\/plugins\\/common\\/common.dist.js\u0022:\u0022js\\/tinymce_v4.5.6\\/plugins\\/common\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.5.6\\/plugins\\/contentcleaner\\/contentcleaner.dist.js\u0022:\u0022js\\/tinymce_v4.5.6\\/plugins\\/contentcleaner\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.5.6\\/plugins\\/embedimage\\/embedimage.dist.js\u0022:\u0022js\\/tinymce_v4.5.6\\/plugins\\/embedimage\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.5.6\\/plugins\\/placeholderattribute\\/placeholderattribute.dist.js\u0022:\u0022js\\/tinymce_v4.5.6\\/plugins\\/placeholderattribute\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.5.6\\/plugins\\/placeholders\\/placeholders.dist.js\u0022:\u0022js\\/tinymce_v4.5.6\\/plugins\\/placeholders\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.5.6\\/plugins\\/scrollposition\\/scrollposition.dist.js\u0022:\u0022js\\/tinymce_v4.5.6\\/plugins\\/scrollposition\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.5.6\\/plugins\\/validate\\/validate.dist.js\u0022:\u0022js\\/tinymce_v4.5.6\\/plugins\\/validate\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.5.6\\/plugins\\/placeholders\\/plugin.min.js.LICENSE.dist.txt\u0022:\u0022js\\/tinymce_v4.5.6\\/plugins\\/placeholders\\/plugin.min.js.LICENSE.txt\u0022,\u0022js\\/tinymce_v4.9.11\\/plugins\\/common\\/common.dist.js\u0022:\u0022js\\/tinymce_v4.9.11\\/plugins\\/common\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.9.11\\/plugins\\/contentcleaner\\/contentcleaner.dist.js\u0022:\u0022js\\/tinymce_v4.9.11\\/plugins\\/contentcleaner\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.9.11\\/plugins\\/embedimage\\/embedimage.dist.js\u0022:\u0022js\\/tinymce_v4.9.11\\/plugins\\/embedimage\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.9.11\\/plugins\\/placeholderattribute\\/placeholderattribute.dist.js\u0022:\u0022js\\/tinymce_v4.9.11\\/plugins\\/placeholderattribute\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.9.11\\/plugins\\/placeholders\\/placeholders.dist.js\u0022:\u0022js\\/tinymce_v4.9.11\\/plugins\\/placeholders\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.9.11\\/plugins\\/scrollposition\\/scrollposition.dist.js\u0022:\u0022js\\/tinymce_v4.9.11\\/plugins\\/scrollposition\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.9.11\\/plugins\\/validate\\/validate.dist.js\u0022:\u0022js\\/tinymce_v4.9.11\\/plugins\\/validate\\/plugin.min.js\u0022,\u0022js\\/tinymce_v4.9.11\\/plugins\\/placeholders\\/plugin.min.js.LICENSE.dist.txt\u0022:\u0022js\\/tinymce_v4.9.11\\/plugins\\/placeholders\\/plugin.min.js.LICENSE.txt\u0022,\u0022js\\/common.dist.js\u0022:\u0022js\\/common.14725093.dist.js\u0022,\u0022js\\/vendor.dist.js\u0022:\u0022js\\/vendor.251019e6.dist.js\u0022,\u0022css\\/BhrTabs.dist.css\u0022:\u0022css\\/BhrTabs.7d622883.dist.css\u0022,\u0022js\\/BhrTabs.dist.js\u0022:\u0022js\\/BhrTabs.7d622883.dist.js\u0022,\u0022js\\/Donut.dist.js\u0022:\u0022js\\/Donut.308114cd.dist.js\u0022,\u0022css\\/EditOptions.dist.css\u0022:\u0022css\\/EditOptions.5196e138.dist.css\u0022,\u0022js\\/EditOptions.dist.js\u0022:\u0022js\\/EditOptions.5196e138.dist.js\u0022,\u0022css\\/EmployeeFilters.dist.css\u0022:\u0022css\\/EmployeeFilters.ec696f0f.dist.css\u0022,\u0022js\\/EmployeeFilters.dist.js\u0022:\u0022js\\/EmployeeFilters.ec696f0f.dist.js\u0022,\u0022css\\/EmployeeSelector.dist.css\u0022:\u0022css\\/EmployeeSelector.16447bbf.dist.css\u0022,\u0022js\\/EmployeeSelector.dist.js\u0022:\u0022js\\/EmployeeSelector.16447bbf.dist.js\u0022,\u0022css\\/NES.dist.css\u0022:\u0022css\\/NES.40c50323.dist.css\u0022,\u0022js\\/NES.dist.js\u0022:\u0022js\\/NES.40c50323.dist.js\u0022,\u0022css\\/ProcessBar.dist.css\u0022:\u0022css\\/ProcessBar.a91f40df.dist.css\u0022,\u0022js\\/ProcessBar.dist.js\u0022:\u0022js\\/ProcessBar.a91f40df.dist.js\u0022,\u0022js\\/ProgressBar.dist.js\u0022:\u0022js\\/ProgressBar.2ce27ae2.dist.js\u0022,\u0022css\\/aca-benefit-history-report.dist.css\u0022:\u0022css\\/aca-benefit-history-report.36ca2110.dist.css\u0022,\u0022js\\/aca-benefit-history-report.dist.js\u0022:\u0022js\\/aca-benefit-history-report.36ca2110.dist.js\u0022,\u0022css\\/aca-monthly-totals-report.dist.css\u0022:\u0022css\\/aca-monthly-totals-report.694c6798.dist.css\u0022,\u0022js\\/aca-monthly-totals-report.dist.js\u0022:\u0022js\\/aca-monthly-totals-report.694c6798.dist.js\u0022,\u0022css\\/access_levels.dist.css\u0022:\u0022css\\/access_levels.0ecf8608.dist.css\u0022,\u0022js\\/access_levels.dist.js\u0022:\u0022js\\/access_levels.0ecf8608.dist.js\u0022,\u0022css\\/account.dist.css\u0022:\u0022css\\/account.59209339.dist.css\u0022,\u0022js\\/account.dist.js\u0022:\u0022js\\/account.59209339.dist.js\u0022,\u0022css\\/add-edit-pay-schedule.dist.css\u0022:\u0022css\\/add-edit-pay-schedule.35a2486e.dist.css\u0022,\u0022js\\/add-edit-pay-schedule.dist.js\u0022:\u0022js\\/add-edit-pay-schedule.35a2486e.dist.js\u0022,\u0022css\\/additions-terminations.dist.css\u0022:\u0022css\\/additions-terminations.9476e8bc.dist.css\u0022,\u0022js\\/additions-terminations.dist.js\u0022:\u0022js\\/additions-terminations.9476e8bc.dist.js\u0022,\u0022css\\/age-profile.dist.css\u0022:\u0022css\\/age-profile.de623298.dist.css\u0022,\u0022js\\/age-profile.dist.js\u0022:\u0022js\\/age-profile.de623298.dist.js\u0022,\u0022css\\/anytime.dist.css\u0022:\u0022css\\/anytime.8647336a.dist.css\u0022,\u0022js\\/anytime.dist.js\u0022:\u0022js\\/anytime.8647336a.dist.js\u0022,\u0022js\\/api-calls.dist.js\u0022:\u0022js\\/api-calls.593fca9c.dist.js\u0022,\u0022css\\/app-trax.dist.css\u0022:\u0022css\\/app-trax.46c7aafb.dist.css\u0022,\u0022js\\/app-trax.dist.js\u0022:\u0022js\\/app-trax.46c7aafb.dist.js\u0022,\u0022css\\/applicant-demographics-report.dist.css\u0022:\u0022css\\/applicant-demographics-report.c1e50d93.dist.css\u0022,\u0022js\\/applicant-demographics-report.dist.js\u0022:\u0022js\\/applicant-demographics-report.c1e50d93.dist.js\u0022,\u0022css\\/applicant-funnel.dist.css\u0022:\u0022css\\/applicant-funnel.c7b07109.dist.css\u0022,\u0022js\\/applicant-funnel.dist.js\u0022:\u0022js\\/applicant-funnel.c7b07109.dist.js\u0022,\u0022css\\/applicant-sources.dist.css\u0022:\u0022css\\/applicant-sources.e22f396c.dist.css\u0022,\u0022js\\/applicant-sources.dist.js\u0022:\u0022js\\/applicant-sources.e22f396c.dist.js\u0022,\u0022css\\/approved-hours-report.dist.css\u0022:\u0022css\\/approved-hours-report.3818bff8.dist.css\u0022,\u0022js\\/approved-hours-report.dist.js\u0022:\u0022js\\/approved-hours-report.3818bff8.dist.js\u0022,\u0022css\\/apps.dist.css\u0022:\u0022css\\/apps.39f24ba2.dist.css\u0022,\u0022js\\/apps.dist.js\u0022:\u0022js\\/apps.39f24ba2.dist.js\u0022,\u0022css\\/assessment-progress-report.dist.css\u0022:\u0022css\\/assessment-progress-report.3f6e991e.dist.css\u0022,\u0022js\\/assessment-progress-report.dist.js\u0022:\u0022js\\/assessment-progress-report.3f6e991e.dist.js\u0022,\u0022css\\/audit-trail-report.dist.css\u0022:\u0022css\\/audit-trail-report.cd06d805.dist.css\u0022,\u0022js\\/audit-trail-report.dist.js\u0022:\u0022js\\/audit-trail-report.cd06d805.dist.js\u0022,\u0022css\\/benefit-summary.dist.css\u0022:\u0022css\\/benefit-summary.7e744ec2.dist.css\u0022,\u0022js\\/benefit-summary.dist.js\u0022:\u0022js\\/benefit-summary.7e744ec2.dist.js\u0022,\u0022css\\/billing.dist.css\u0022:\u0022css\\/billing.eb49773f.dist.css\u0022,\u0022js\\/billing.dist.js\u0022:\u0022js\\/billing.eb49773f.dist.js\u0022,\u0022css\\/calendar.dist.css\u0022:\u0022css\\/calendar.4c54abb2.dist.css\u0022,\u0022js\\/calendar.dist.js\u0022:\u0022js\\/calendar.4c54abb2.dist.js\u0022,\u0022css\\/calendar-ical-modal.dist.css\u0022:\u0022css\\/calendar-ical-modal.c499c25e.dist.css\u0022,\u0022js\\/calendar-ical-modal.dist.js\u0022:\u0022js\\/calendar-ical-modal.c499c25e.dist.js\u0022,\u0022css\\/change-history.dist.css\u0022:\u0022css\\/change-history.a26e562c.dist.css\u0022,\u0022js\\/change-history.dist.js\u0022:\u0022js\\/change-history.a26e562c.dist.js\u0022,\u0022js\\/change_password.dist.js\u0022:\u0022js\\/change_password.91ffa720.dist.js\u0022,\u0022css\\/company-performance-report.dist.css\u0022:\u0022css\\/company-performance-report.a888a389.dist.css\u0022,\u0022js\\/company-performance-report.dist.js\u0022:\u0022js\\/company-performance-report.a888a389.dist.js\u0022,\u0022css\\/custom-report.dist.css\u0022:\u0022css\\/custom-report.6c19543a.dist.css\u0022,\u0022js\\/custom-report.dist.js\u0022:\u0022js\\/custom-report.6c19543a.dist.js\u0022,\u0022css\\/dashboard.dist.css\u0022:\u0022css\\/dashboard.39eed2ad.dist.css\u0022,\u0022js\\/dashboard.dist.js\u0022:\u0022js\\/dashboard.39eed2ad.dist.js\u0022,\u0022css\\/data-table.dist.css\u0022:\u0022css\\/data-table.b0a8a326.dist.css\u0022,\u0022js\\/data-table.dist.js\u0022:\u0022js\\/data-table.b0a8a326.dist.js\u0022,\u0022css\\/dev.dist.css\u0022:\u0022css\\/dev.a00e59ea.dist.css\u0022,\u0022js\\/dev.dist.js\u0022:\u0022js\\/dev.a00e59ea.dist.js\u0022,\u0022css\\/direct-deposit.dist.css\u0022:\u0022css\\/direct-deposit.0231bfbf.dist.css\u0022,\u0022js\\/direct-deposit.dist.js\u0022:\u0022js\\/direct-deposit.0231bfbf.dist.js\u0022,\u0022css\\/directory-new.dist.css\u0022:\u0022css\\/directory-new.c9bb4c7f.dist.css\u0022,\u0022js\\/directory-new.dist.js\u0022:\u0022js\\/directory-new.c9bb4c7f.dist.js\u0022,\u0022css\\/eeo-1-details-report.dist.css\u0022:\u0022css\\/eeo-1-details-report.716cabd7.dist.css\u0022,\u0022js\\/eeo-1-details-report.dist.js\u0022:\u0022js\\/eeo-1-details-report.716cabd7.dist.js\u0022,\u0022css\\/eeo-1-report.dist.css\u0022:\u0022css\\/eeo-1-report.d3ae3c8d.dist.css\u0022,\u0022js\\/eeo-1-report.dist.js\u0022:\u0022js\\/eeo-1-report.d3ae3c8d.dist.js\u0022,\u0022js\\/employee-looping.dist.js\u0022:\u0022js\\/employee-looping.3d1c13b3.dist.js\u0022,\u0022css\\/employee-performance-report.dist.css\u0022:\u0022css\\/employee-performance-report.43c6ef10.dist.css\u0022,\u0022js\\/employee-performance-report.dist.js\u0022:\u0022js\\/employee-performance-report.43c6ef10.dist.js\u0022,\u0022css\\/employee-project-hours-report.dist.css\u0022:\u0022css\\/employee-project-hours-report.2e27b523.dist.css\u0022,\u0022js\\/employee-project-hours-report.dist.js\u0022:\u0022js\\/employee-project-hours-report.2e27b523.dist.js\u0022,\u0022css\\/employee-turnover-report.dist.css\u0022:\u0022css\\/employee-turnover-report.2d97abf9.dist.css\u0022,\u0022js\\/employee-turnover-report.dist.js\u0022:\u0022js\\/employee-turnover-report.2d97abf9.dist.js\u0022,\u0022css\\/employees.dist.css\u0022:\u0022css\\/employees.46471f78.dist.css\u0022,\u0022js\\/employees.dist.js\u0022:\u0022js\\/employees.46471f78.dist.js\u0022,\u0022css\\/enps.dist.css\u0022:\u0022css\\/enps.acd5d76b.dist.css\u0022,\u0022js\\/enps.dist.js\u0022:\u0022js\\/enps.acd5d76b.dist.js\u0022,\u0022css\\/enps-benchmark.dist.css\u0022:\u0022css\\/enps-benchmark.216470ad.dist.css\u0022,\u0022js\\/enps-benchmark.dist.js\u0022:\u0022js\\/enps-benchmark.216470ad.dist.js\u0022,\u0022css\\/enps-report.dist.css\u0022:\u0022css\\/enps-report.79101d75.dist.css\u0022,\u0022js\\/enps-report.dist.js\u0022:\u0022js\\/enps-report.79101d75.dist.js\u0022,\u0022css\\/error-pages.dist.css\u0022:\u0022css\\/error-pages.2fd101d7.dist.css\u0022,\u0022js\\/error-pages.dist.js\u0022:\u0022js\\/error-pages.2fd101d7.dist.js\u0022,\u0022css\\/federal-withholding.dist.css\u0022:\u0022css\\/federal-withholding.2e3cafc8.dist.css\u0022,\u0022js\\/federal-withholding.dist.js\u0022:\u0022js\\/federal-withholding.2e3cafc8.dist.js\u0022,\u0022css\\/feeds.dist.css\u0022:\u0022css\\/feeds.e8dd8ced.dist.css\u0022,\u0022js\\/feeds.dist.js\u0022:\u0022js\\/feeds.e8dd8ced.dist.js\u0022,\u0022css\\/file_export.dist.css\u0022:\u0022css\\/file_export.8d76379c.dist.css\u0022,\u0022js\\/file_export.dist.js\u0022:\u0022js\\/file_export.8d76379c.dist.js\u0022,\u0022css\\/files.dist.css\u0022:\u0022css\\/files.032b721e.dist.css\u0022,\u0022js\\/files.dist.js\u0022:\u0022js\\/files.032b721e.dist.js\u0022,\u0022css\\/gender-profile.dist.css\u0022:\u0022css\\/gender-profile.cdc6a037.dist.css\u0022,\u0022js\\/gender-profile.dist.js\u0022:\u0022js\\/gender-profile.cdc6a037.dist.js\u0022,\u0022css\\/global.dist.css\u0022:\u0022css\\/global.67b55449.dist.css\u0022,\u0022js\\/global.dist.js\u0022:\u0022js\\/global.67b55449.dist.js\u0022,\u0022css\\/global-gh.dist.css\u0022:\u0022css\\/global-gh.4fc07313.dist.css\u0022,\u0022js\\/global-gh.dist.js\u0022:\u0022js\\/global-gh.4fc07313.dist.js\u0022,\u0022css\\/global-jade.dist.css\u0022:\u0022css\\/global-jade.599e2d70.dist.css\u0022,\u0022js\\/global-jade.dist.js\u0022:\u0022js\\/global-jade.599e2d70.dist.js\u0022,\u0022css\\/global-legacy.dist.css\u0022:\u0022css\\/global-legacy.edc52714.dist.css\u0022,\u0022js\\/global-legacy.dist.js\u0022:\u0022js\\/global-legacy.edc52714.dist.js\u0022,\u0022css\\/goals.dist.css\u0022:\u0022css\\/goals.383b5ded.dist.css\u0022,\u0022js\\/goals.dist.js\u0022:\u0022js\\/goals.383b5ded.dist.js\u0022,\u0022css\\/greenhouse.dist.css\u0022:\u0022css\\/greenhouse.854494fa.dist.css\u0022,\u0022js\\/greenhouse.dist.js\u0022:\u0022js\\/greenhouse.854494fa.dist.js\u0022,\u0022css\\/greenhouse-company-benefit-settings.dist.css\u0022:\u0022css\\/greenhouse-company-benefit-settings.e21bb037.dist.css\u0022,\u0022js\\/greenhouse-company-benefit-settings.dist.js\u0022:\u0022js\\/greenhouse-company-benefit-settings.e21bb037.dist.js\u0022,\u0022css\\/greenhouse-company-payroll.dist.css\u0022:\u0022css\\/greenhouse-company-payroll.f7117841.dist.css\u0022,\u0022js\\/greenhouse-company-payroll.dist.js\u0022:\u0022js\\/greenhouse-company-payroll.f7117841.dist.js\u0022,\u0022js\\/greenhouse-micro.dist.js\u0022:\u0022js\\/greenhouse-micro.c4a18b67.dist.js\u0022,\u0022css\\/gtky-questions.dist.css\u0022:\u0022css\\/gtky-questions.3d6292cf.dist.css\u0022,\u0022js\\/gtky-questions.dist.js\u0022:\u0022js\\/gtky-questions.3d6292cf.dist.js\u0022,\u0022js\\/head.dist.js\u0022:\u0022js\\/head.b82c5521.dist.js\u0022,\u0022css\\/headcount-report.dist.css\u0022:\u0022css\\/headcount-report.52fcab3d.dist.css\u0022,\u0022js\\/headcount-report.dist.js\u0022:\u0022js\\/headcount-report.52fcab3d.dist.js\u0022,\u0022css\\/hiring.dist.css\u0022:\u0022css\\/hiring.f5f678e3.dist.css\u0022,\u0022js\\/hiring.dist.js\u0022:\u0022js\\/hiring.f5f678e3.dist.js\u0022,\u0022css\\/home.dist.css\u0022:\u0022css\\/home.40c055d0.dist.css\u0022,\u0022js\\/home.dist.js\u0022:\u0022js\\/home.40c055d0.dist.js\u0022,\u0022css\\/inbox.dist.css\u0022:\u0022css\\/inbox.94ee2207.dist.css\u0022,\u0022js\\/inbox.dist.js\u0022:\u0022js\\/inbox.94ee2207.dist.js\u0022,\u0022css\\/inbox-calendar.dist.css\u0022:\u0022css\\/inbox-calendar.c16468af.dist.css\u0022,\u0022js\\/inbox-calendar.dist.js\u0022:\u0022js\\/inbox-calendar.c16468af.dist.js\u0022,\u0022css\\/jobs.dist.css\u0022:\u0022css\\/jobs.6865acc5.dist.css\u0022,\u0022js\\/jobs.dist.js\u0022:\u0022js\\/jobs.6865acc5.dist.js\u0022,\u0022js\\/locations.dist.js\u0022:\u0022js\\/locations.cbd0b239.dist.js\u0022,\u0022css\\/logged-out.dist.css\u0022:\u0022css\\/logged-out.aa022c75.dist.css\u0022,\u0022js\\/logged-out.dist.js\u0022:\u0022js\\/logged-out.aa022c75.dist.js\u0022,\u0022css\\/login.dist.css\u0022:\u0022css\\/login.fecaff95.dist.css\u0022,\u0022js\\/login.dist.js\u0022:\u0022js\\/login.fecaff95.dist.js\u0022,\u0022css\\/login-gh.dist.css\u0022:\u0022css\\/login-gh.6faf2696.dist.css\u0022,\u0022js\\/login-gh.dist.js\u0022:\u0022js\\/login-gh.6faf2696.dist.js\u0022,\u0022css\\/manage.dist.css\u0022:\u0022css\\/manage.f58efdd4.dist.css\u0022,\u0022js\\/manage.dist.js\u0022:\u0022js\\/manage.f58efdd4.dist.js\u0022,\u0022css\\/multi-factor-auth.dist.css\u0022:\u0022css\\/multi-factor-auth.ca08990f.dist.css\u0022,\u0022js\\/multi-factor-auth.dist.js\u0022:\u0022js\\/multi-factor-auth.ca08990f.dist.js\u0022,\u0022css\\/new-benefit.dist.css\u0022:\u0022css\\/new-benefit.5fa34be9.dist.css\u0022,\u0022js\\/new-benefit.dist.js\u0022:\u0022js\\/new-benefit.5fa34be9.dist.js\u0022,\u0022css\\/offer-letter-finalize.dist.css\u0022:\u0022css\\/offer-letter-finalize.c56a2910.dist.css\u0022,\u0022js\\/offer-letter-finalize.dist.js\u0022:\u0022js\\/offer-letter-finalize.c56a2910.dist.js\u0022,\u0022css\\/org-chart.dist.css\u0022:\u0022css\\/org-chart.d4bb3e4f.dist.css\u0022,\u0022js\\/org-chart.dist.js\u0022:\u0022js\\/org-chart.d4bb3e4f.dist.js\u0022,\u0022css\\/org-chart-export.dist.css\u0022:\u0022css\\/org-chart-export.1c6ebdcb.dist.css\u0022,\u0022js\\/org-chart-export.dist.js\u0022:\u0022js\\/org-chart-export.1c6ebdcb.dist.js\u0022,\u0022css\\/orgchart.dist.css\u0022:\u0022css\\/orgchart.61656392.dist.css\u0022,\u0022js\\/orgchart.dist.js\u0022:\u0022js\\/orgchart.61656392.dist.js\u0022,\u0022css\\/pay-info-missing-data.dist.css\u0022:\u0022css\\/pay-info-missing-data.03ff89c3.dist.css\u0022,\u0022js\\/pay-info-missing-data.dist.js\u0022:\u0022js\\/pay-info-missing-data.03ff89c3.dist.js\u0022,\u0022css\\/payroll.dist.css\u0022:\u0022css\\/payroll.fe54ae5f.dist.css\u0022,\u0022js\\/payroll.dist.js\u0022:\u0022js\\/payroll.fe54ae5f.dist.js\u0022,\u0022css\\/payroll-change-report.dist.css\u0022:\u0022css\\/payroll-change-report.9069697a.dist.css\u0022,\u0022js\\/payroll-change-report.dist.js\u0022:\u0022js\\/payroll-change-report.9069697a.dist.js\u0022,\u0022css\\/payroll-hours-report.dist.css\u0022:\u0022css\\/payroll-hours-report.53a9a409.dist.css\u0022,\u0022js\\/payroll-hours-report.dist.js\u0022:\u0022js\\/payroll-hours-report.53a9a409.dist.js\u0022,\u0022css\\/payroll-info-checkup.dist.css\u0022:\u0022css\\/payroll-info-checkup.e0a8cd1a.dist.css\u0022,\u0022js\\/payroll-info-checkup.dist.js\u0022:\u0022js\\/payroll-info-checkup.e0a8cd1a.dist.js\u0022,\u0022css\\/payroll-summary-report.dist.css\u0022:\u0022css\\/payroll-summary-report.32cd76b3.dist.css\u0022,\u0022js\\/payroll-summary-report.dist.js\u0022:\u0022js\\/payroll-summary-report.32cd76b3.dist.js\u0022,\u0022css\\/payroll-update-summary.dist.css\u0022:\u0022css\\/payroll-update-summary.60e81ba5.dist.css\u0022,\u0022js\\/payroll-update-summary.dist.js\u0022:\u0022js\\/payroll-update-summary.60e81ba5.dist.js\u0022,\u0022js\\/pdfjsWorker.dist.js\u0022:\u0022js\\/pdfjsWorker.a4eb4e3e.dist.js\u0022,\u0022css\\/peer-feedback-status-report.dist.css\u0022:\u0022css\\/peer-feedback-status-report.616eb8bd.dist.css\u0022,\u0022js\\/peer-feedback-status-report.dist.js\u0022:\u0022js\\/peer-feedback-status-report.616eb8bd.dist.js\u0022,\u0022css\\/performance.dist.css\u0022:\u0022css\\/performance.325fabbb.dist.css\u0022,\u0022js\\/performance.dist.js\u0022:\u0022js\\/performance.325fabbb.dist.js\u0022,\u0022css\\/point-in-time-report.dist.css\u0022:\u0022css\\/point-in-time-report.e3b77874.dist.css\u0022,\u0022js\\/point-in-time-report.dist.js\u0022:\u0022js\\/point-in-time-report.e3b77874.dist.js\u0022,\u0022js\\/polyfill.dist.js\u0022:\u0022js\\/polyfill.6ba6d66c.dist.js\u0022,\u0022css\\/power_edit.dist.css\u0022:\u0022css\\/power_edit.e1033ae3.dist.css\u0022,\u0022js\\/power_edit.dist.js\u0022:\u0022js\\/power_edit.e1033ae3.dist.js\u0022,\u0022css\\/prelogin.dist.css\u0022:\u0022css\\/prelogin.9122b7d4.dist.css\u0022,\u0022js\\/prelogin.dist.js\u0022:\u0022js\\/prelogin.9122b7d4.dist.js\u0022,\u0022css\\/project-hours-report.dist.css\u0022:\u0022css\\/project-hours-report.9ff4e42b.dist.css\u0022,\u0022js\\/project-hours-report.dist.js\u0022:\u0022js\\/project-hours-report.9ff4e42b.dist.js\u0022,\u0022css\\/pto.dist.css\u0022:\u0022css\\/pto.98b20d00.dist.css\u0022,\u0022js\\/pto.dist.js\u0022:\u0022js\\/pto.98b20d00.dist.js\u0022,\u0022css\\/pto-new.dist.css\u0022:\u0022css\\/pto-new.b698e83d.dist.css\u0022,\u0022js\\/pto-new.dist.js\u0022:\u0022js\\/pto-new.b698e83d.dist.js\u0022,\u0022css\\/pulse.dist.css\u0022:\u0022css\\/pulse.c7426702.dist.css\u0022,\u0022js\\/pulse.dist.js\u0022:\u0022js\\/pulse.c7426702.dist.js\u0022,\u0022js\\/report-filter.dist.js\u0022:\u0022js\\/report-filter.77dc23b9.dist.js\u0022,\u0022css\\/report-list.dist.css\u0022:\u0022css\\/report-list.2656bb34.dist.css\u0022,\u0022js\\/report-list.dist.js\u0022:\u0022js\\/report-list.2656bb34.dist.js\u0022,\u0022js\\/report-sticky-nav.dist.js\u0022:\u0022js\\/report-sticky-nav.92358675.dist.js\u0022,\u0022css\\/report-wizard.dist.css\u0022:\u0022css\\/report-wizard.d493ba82.dist.css\u0022,\u0022js\\/report-wizard.dist.js\u0022:\u0022js\\/report-wizard.d493ba82.dist.js\u0022,\u0022css\\/reports.dist.css\u0022:\u0022css\\/reports.d21ccaaa.dist.css\u0022,\u0022js\\/reports.dist.js\u0022:\u0022js\\/reports.d21ccaaa.dist.js\u0022,\u0022css\\/reseller.dist.css\u0022:\u0022css\\/reseller.c65e6d4c.dist.css\u0022,\u0022js\\/reseller.dist.js\u0022:\u0022js\\/reseller.c65e6d4c.dist.js\u0022,\u0022css\\/rightsignature.dist.css\u0022:\u0022css\\/rightsignature.9b8dc1be.dist.css\u0022,\u0022js\\/rightsignature.dist.js\u0022:\u0022js\\/rightsignature.9b8dc1be.dist.js\u0022,\u0022css\\/secure-file-download.dist.css\u0022:\u0022css\\/secure-file-download.91612d6d.dist.css\u0022,\u0022js\\/secure-file-download.dist.js\u0022:\u0022js\\/secure-file-download.91612d6d.dist.js\u0022,\u0022css\\/self_onboarding.dist.css\u0022:\u0022css\\/self_onboarding.adfc43aa.dist.css\u0022,\u0022js\\/self_onboarding.dist.js\u0022:\u0022js\\/self_onboarding.adfc43aa.dist.js\u0022,\u0022css\\/self_onboarding_login.dist.css\u0022:\u0022css\\/self_onboarding_login.398b1609.dist.css\u0022,\u0022js\\/self_onboarding_login.dist.js\u0022:\u0022js\\/self_onboarding_login.398b1609.dist.js\u0022,\u0022css\\/settings.dist.css\u0022:\u0022css\\/settings.3d34b8cd.dist.css\u0022,\u0022js\\/settings.dist.js\u0022:\u0022js\\/settings.3d34b8cd.dist.js\u0022,\u0022css\\/settings-benefits-bulk-editing.dist.css\u0022:\u0022css\\/settings-benefits-bulk-editing.7c1fd413.dist.css\u0022,\u0022js\\/settings-benefits-bulk-editing.dist.js\u0022:\u0022js\\/settings-benefits-bulk-editing.7c1fd413.dist.js\u0022,\u0022css\\/settings-benefits-plan-wizard.dist.css\u0022:\u0022css\\/settings-benefits-plan-wizard.f68ab985.dist.css\u0022,\u0022js\\/settings-benefits-plan-wizard.dist.js\u0022:\u0022js\\/settings-benefits-plan-wizard.f68ab985.dist.js\u0022,\u0022css\\/settings-project-tracking.dist.css\u0022:\u0022css\\/settings-project-tracking.63543134.dist.css\u0022,\u0022js\\/settings-project-tracking.dist.js\u0022:\u0022js\\/settings-project-tracking.63543134.dist.js\u0022,\u0022js\\/settings-pto-import.dist.js\u0022:\u0022js\\/settings-pto-import.5c687a52.dist.js\u0022,\u0022css\\/standard-list-report.dist.css\u0022:\u0022css\\/standard-list-report.a393a155.dist.css\u0022,\u0022js\\/standard-list-report.dist.js\u0022:\u0022js\\/standard-list-report.a393a155.dist.js\u0022,\u0022css\\/standard-report.dist.css\u0022:\u0022css\\/standard-report.3a5121b2.dist.css\u0022,\u0022js\\/standard-report.dist.js\u0022:\u0022js\\/standard-report.3a5121b2.dist.js\u0022,\u0022css\\/state-withholding-unemployment.dist.css\u0022:\u0022css\\/state-withholding-unemployment.be2519e8.dist.css\u0022,\u0022js\\/state-withholding-unemployment.dist.js\u0022:\u0022js\\/state-withholding-unemployment.be2519e8.dist.js\u0022,\u0022css\\/style_guide.dist.css\u0022:\u0022css\\/style_guide.e60d96fc.dist.css\u0022,\u0022js\\/style_guide.dist.js\u0022:\u0022js\\/style_guide.e60d96fc.dist.js\u0022,\u0022css\\/time-off.dist.css\u0022:\u0022css\\/time-off.a15e77bb.dist.css\u0022,\u0022js\\/time-off.dist.js\u0022:\u0022js\\/time-off.a15e77bb.dist.js\u0022,\u0022css\\/time-off-balances-report.dist.css\u0022:\u0022css\\/time-off-balances-report.e47c656e.dist.css\u0022,\u0022js\\/time-off-balances-report.dist.js\u0022:\u0022js\\/time-off-balances-report.e47c656e.dist.js\u0022,\u0022css\\/time-off-schedule-report.dist.css\u0022:\u0022css\\/time-off-schedule-report.75438f5e.dist.css\u0022,\u0022js\\/time-off-schedule-report.dist.js\u0022:\u0022js\\/time-off-schedule-report.75438f5e.dist.js\u0022,\u0022css\\/time-off-used-report.dist.css\u0022:\u0022css\\/time-off-used-report.8e893eac.dist.css\u0022,\u0022js\\/time-off-used-report.dist.js\u0022:\u0022js\\/time-off-used-report.8e893eac.dist.js\u0022,\u0022css\\/time_tracking.dist.css\u0022:\u0022css\\/time_tracking.6ea3fca8.dist.css\u0022,\u0022js\\/time_tracking.dist.js\u0022:\u0022js\\/time_tracking.6ea3fca8.dist.js\u0022,\u0022css\\/timesheet.dist.css\u0022:\u0022css\\/timesheet.4eebe26e.dist.css\u0022,\u0022js\\/timesheet.dist.js\u0022:\u0022js\\/timesheet.4eebe26e.dist.js\u0022,\u0022css\\/timesheet-entries-report.dist.css\u0022:\u0022css\\/timesheet-entries-report.250b005a.dist.css\u0022,\u0022js\\/timesheet-entries-report.dist.js\u0022:\u0022js\\/timesheet-entries-report.250b005a.dist.js\u0022,\u0022js\\/trend-graph.dist.js\u0022:\u0022js\\/trend-graph.e1c9f550.dist.js\u0022,\u0022images\\/fabric.dist.svg\u0022:\u0022images\\/fabric.94a3b6be.dist.svg\u0022,\u0022js\\/cmaps\\/78-EUC-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/78-EUC-H.bcmap\u0022,\u0022js\\/cmaps\\/78-EUC-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/78-EUC-V.bcmap\u0022,\u0022js\\/cmaps\\/78-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/78-H.bcmap\u0022,\u0022js\\/cmaps\\/78-RKSJ-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/78-RKSJ-H.bcmap\u0022,\u0022js\\/cmaps\\/78-RKSJ-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/78-RKSJ-V.bcmap\u0022,\u0022js\\/cmaps\\/78-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/78-V.bcmap\u0022,\u0022js\\/cmaps\\/78ms-RKSJ-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/78ms-RKSJ-H.bcmap\u0022,\u0022js\\/cmaps\\/78ms-RKSJ-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/78ms-RKSJ-V.bcmap\u0022,\u0022js\\/cmaps\\/83pv-RKSJ-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/83pv-RKSJ-H.bcmap\u0022,\u0022js\\/cmaps\\/90ms-RKSJ-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/90ms-RKSJ-H.bcmap\u0022,\u0022js\\/cmaps\\/90ms-RKSJ-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/90ms-RKSJ-V.bcmap\u0022,\u0022js\\/cmaps\\/90msp-RKSJ-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/90msp-RKSJ-H.bcmap\u0022,\u0022js\\/cmaps\\/90msp-RKSJ-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/90msp-RKSJ-V.bcmap\u0022,\u0022js\\/cmaps\\/90pv-RKSJ-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/90pv-RKSJ-H.bcmap\u0022,\u0022js\\/cmaps\\/90pv-RKSJ-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/90pv-RKSJ-V.bcmap\u0022,\u0022js\\/cmaps\\/Add-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/Add-H.bcmap\u0022,\u0022js\\/cmaps\\/Add-RKSJ-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/Add-RKSJ-H.bcmap\u0022,\u0022js\\/cmaps\\/Add-RKSJ-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/Add-RKSJ-V.bcmap\u0022,\u0022js\\/cmaps\\/Add-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/Add-V.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-CNS1-0.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-CNS1-0.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-CNS1-1.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-CNS1-1.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-CNS1-2.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-CNS1-2.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-CNS1-3.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-CNS1-3.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-CNS1-4.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-CNS1-4.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-CNS1-5.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-CNS1-5.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-CNS1-6.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-CNS1-6.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-CNS1-UCS2.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-CNS1-UCS2.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-GB1-0.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-GB1-0.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-GB1-1.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-GB1-1.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-GB1-2.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-GB1-2.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-GB1-3.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-GB1-3.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-GB1-4.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-GB1-4.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-GB1-5.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-GB1-5.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-GB1-UCS2.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-GB1-UCS2.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-Japan1-0.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-Japan1-0.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-Japan1-1.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-Japan1-1.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-Japan1-2.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-Japan1-2.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-Japan1-3.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-Japan1-3.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-Japan1-4.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-Japan1-4.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-Japan1-5.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-Japan1-5.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-Japan1-6.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-Japan1-6.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-Japan1-UCS2.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-Japan1-UCS2.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-Korea1-0.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-Korea1-0.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-Korea1-1.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-Korea1-1.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-Korea1-2.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-Korea1-2.bcmap\u0022,\u0022js\\/cmaps\\/Adobe-Korea1-UCS2.dist.bcmap\u0022:\u0022js\\/cmaps\\/Adobe-Korea1-UCS2.bcmap\u0022,\u0022js\\/cmaps\\/B5-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/B5-H.bcmap\u0022,\u0022js\\/cmaps\\/B5-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/B5-V.bcmap\u0022,\u0022js\\/cmaps\\/B5pc-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/B5pc-H.bcmap\u0022,\u0022js\\/cmaps\\/B5pc-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/B5pc-V.bcmap\u0022,\u0022js\\/cmaps\\/CNS-EUC-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/CNS-EUC-H.bcmap\u0022,\u0022js\\/cmaps\\/CNS-EUC-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/CNS-EUC-V.bcmap\u0022,\u0022js\\/cmaps\\/CNS1-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/CNS1-H.bcmap\u0022,\u0022js\\/cmaps\\/CNS1-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/CNS1-V.bcmap\u0022,\u0022js\\/cmaps\\/CNS2-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/CNS2-H.bcmap\u0022,\u0022js\\/cmaps\\/CNS2-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/CNS2-V.bcmap\u0022,\u0022js\\/cmaps\\/ETHK-B5-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/ETHK-B5-H.bcmap\u0022,\u0022js\\/cmaps\\/ETHK-B5-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/ETHK-B5-V.bcmap\u0022,\u0022js\\/cmaps\\/ETen-B5-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/ETen-B5-H.bcmap\u0022,\u0022js\\/cmaps\\/ETen-B5-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/ETen-B5-V.bcmap\u0022,\u0022js\\/cmaps\\/ETenms-B5-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/ETenms-B5-H.bcmap\u0022,\u0022js\\/cmaps\\/ETenms-B5-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/ETenms-B5-V.bcmap\u0022,\u0022js\\/cmaps\\/EUC-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/EUC-H.bcmap\u0022,\u0022js\\/cmaps\\/EUC-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/EUC-V.bcmap\u0022,\u0022js\\/cmaps\\/Ext-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/Ext-H.bcmap\u0022,\u0022js\\/cmaps\\/Ext-RKSJ-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/Ext-RKSJ-H.bcmap\u0022,\u0022js\\/cmaps\\/Ext-RKSJ-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/Ext-RKSJ-V.bcmap\u0022,\u0022js\\/cmaps\\/Ext-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/Ext-V.bcmap\u0022,\u0022js\\/cmaps\\/GB-EUC-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/GB-EUC-H.bcmap\u0022,\u0022js\\/cmaps\\/GB-EUC-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/GB-EUC-V.bcmap\u0022,\u0022js\\/cmaps\\/GB-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/GB-H.bcmap\u0022,\u0022js\\/cmaps\\/GB-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/GB-V.bcmap\u0022,\u0022js\\/cmaps\\/GBK-EUC-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBK-EUC-H.bcmap\u0022,\u0022js\\/cmaps\\/GBK-EUC-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBK-EUC-V.bcmap\u0022,\u0022js\\/cmaps\\/GBK2K-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBK2K-H.bcmap\u0022,\u0022js\\/cmaps\\/GBK2K-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBK2K-V.bcmap\u0022,\u0022js\\/cmaps\\/GBKp-EUC-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBKp-EUC-H.bcmap\u0022,\u0022js\\/cmaps\\/GBKp-EUC-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBKp-EUC-V.bcmap\u0022,\u0022js\\/cmaps\\/GBT-EUC-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBT-EUC-H.bcmap\u0022,\u0022js\\/cmaps\\/GBT-EUC-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBT-EUC-V.bcmap\u0022,\u0022js\\/cmaps\\/GBT-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBT-H.bcmap\u0022,\u0022js\\/cmaps\\/GBT-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBT-V.bcmap\u0022,\u0022js\\/cmaps\\/GBTpc-EUC-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBTpc-EUC-H.bcmap\u0022,\u0022js\\/cmaps\\/GBTpc-EUC-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBTpc-EUC-V.bcmap\u0022,\u0022js\\/cmaps\\/GBpc-EUC-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBpc-EUC-H.bcmap\u0022,\u0022js\\/cmaps\\/GBpc-EUC-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/GBpc-EUC-V.bcmap\u0022,\u0022js\\/cmaps\\/H.dist.bcmap\u0022:\u0022js\\/cmaps\\/H.bcmap\u0022,\u0022js\\/cmaps\\/HKdla-B5-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/HKdla-B5-H.bcmap\u0022,\u0022js\\/cmaps\\/HKdla-B5-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/HKdla-B5-V.bcmap\u0022,\u0022js\\/cmaps\\/HKdlb-B5-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/HKdlb-B5-H.bcmap\u0022,\u0022js\\/cmaps\\/HKdlb-B5-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/HKdlb-B5-V.bcmap\u0022,\u0022js\\/cmaps\\/HKgccs-B5-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/HKgccs-B5-H.bcmap\u0022,\u0022js\\/cmaps\\/HKgccs-B5-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/HKgccs-B5-V.bcmap\u0022,\u0022js\\/cmaps\\/HKm314-B5-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/HKm314-B5-H.bcmap\u0022,\u0022js\\/cmaps\\/HKm314-B5-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/HKm314-B5-V.bcmap\u0022,\u0022js\\/cmaps\\/HKm471-B5-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/HKm471-B5-H.bcmap\u0022,\u0022js\\/cmaps\\/HKm471-B5-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/HKm471-B5-V.bcmap\u0022,\u0022js\\/cmaps\\/HKscs-B5-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/HKscs-B5-H.bcmap\u0022,\u0022js\\/cmaps\\/HKscs-B5-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/HKscs-B5-V.bcmap\u0022,\u0022js\\/cmaps\\/Hankaku.dist.bcmap\u0022:\u0022js\\/cmaps\\/Hankaku.bcmap\u0022,\u0022js\\/cmaps\\/Hiragana.dist.bcmap\u0022:\u0022js\\/cmaps\\/Hiragana.bcmap\u0022,\u0022js\\/cmaps\\/KSC-EUC-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/KSC-EUC-H.bcmap\u0022,\u0022js\\/cmaps\\/KSC-EUC-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/KSC-EUC-V.bcmap\u0022,\u0022js\\/cmaps\\/KSC-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/KSC-H.bcmap\u0022,\u0022js\\/cmaps\\/KSC-Johab-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/KSC-Johab-H.bcmap\u0022,\u0022js\\/cmaps\\/KSC-Johab-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/KSC-Johab-V.bcmap\u0022,\u0022js\\/cmaps\\/KSC-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/KSC-V.bcmap\u0022,\u0022js\\/cmaps\\/KSCms-UHC-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/KSCms-UHC-H.bcmap\u0022,\u0022js\\/cmaps\\/KSCms-UHC-HW-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/KSCms-UHC-HW-H.bcmap\u0022,\u0022js\\/cmaps\\/KSCms-UHC-HW-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/KSCms-UHC-HW-V.bcmap\u0022,\u0022js\\/cmaps\\/KSCms-UHC-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/KSCms-UHC-V.bcmap\u0022,\u0022js\\/cmaps\\/KSCpc-EUC-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/KSCpc-EUC-H.bcmap\u0022,\u0022js\\/cmaps\\/KSCpc-EUC-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/KSCpc-EUC-V.bcmap\u0022,\u0022js\\/cmaps\\/Katakana.dist.bcmap\u0022:\u0022js\\/cmaps\\/Katakana.bcmap\u0022,\u0022js\\/cmaps\\/NWP-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/NWP-H.bcmap\u0022,\u0022js\\/cmaps\\/NWP-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/NWP-V.bcmap\u0022,\u0022js\\/cmaps\\/RKSJ-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/RKSJ-H.bcmap\u0022,\u0022js\\/cmaps\\/RKSJ-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/RKSJ-V.bcmap\u0022,\u0022js\\/cmaps\\/Roman.dist.bcmap\u0022:\u0022js\\/cmaps\\/Roman.bcmap\u0022,\u0022js\\/cmaps\\/UniCNS-UCS2-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniCNS-UCS2-H.bcmap\u0022,\u0022js\\/cmaps\\/UniCNS-UCS2-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniCNS-UCS2-V.bcmap\u0022,\u0022js\\/cmaps\\/UniCNS-UTF16-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniCNS-UTF16-H.bcmap\u0022,\u0022js\\/cmaps\\/UniCNS-UTF16-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniCNS-UTF16-V.bcmap\u0022,\u0022js\\/cmaps\\/UniCNS-UTF32-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniCNS-UTF32-H.bcmap\u0022,\u0022js\\/cmaps\\/UniCNS-UTF32-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniCNS-UTF32-V.bcmap\u0022,\u0022js\\/cmaps\\/UniCNS-UTF8-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniCNS-UTF8-H.bcmap\u0022,\u0022js\\/cmaps\\/UniCNS-UTF8-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniCNS-UTF8-V.bcmap\u0022,\u0022js\\/cmaps\\/UniGB-UCS2-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniGB-UCS2-H.bcmap\u0022,\u0022js\\/cmaps\\/UniGB-UCS2-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniGB-UCS2-V.bcmap\u0022,\u0022js\\/cmaps\\/UniGB-UTF16-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniGB-UTF16-H.bcmap\u0022,\u0022js\\/cmaps\\/UniGB-UTF16-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniGB-UTF16-V.bcmap\u0022,\u0022js\\/cmaps\\/UniGB-UTF32-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniGB-UTF32-H.bcmap\u0022,\u0022js\\/cmaps\\/UniGB-UTF32-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniGB-UTF32-V.bcmap\u0022,\u0022js\\/cmaps\\/UniGB-UTF8-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniGB-UTF8-H.bcmap\u0022,\u0022js\\/cmaps\\/UniGB-UTF8-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniGB-UTF8-V.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS-UCS2-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS-UCS2-H.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS-UCS2-HW-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS-UCS2-HW-H.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS-UCS2-HW-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS-UCS2-HW-V.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS-UCS2-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS-UCS2-V.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS-UTF16-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS-UTF16-H.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS-UTF16-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS-UTF16-V.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS-UTF32-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS-UTF32-H.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS-UTF32-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS-UTF32-V.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS-UTF8-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS-UTF8-H.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS-UTF8-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS-UTF8-V.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS2004-UTF16-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS2004-UTF16-H.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS2004-UTF16-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS2004-UTF16-V.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS2004-UTF32-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS2004-UTF32-H.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS2004-UTF32-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS2004-UTF32-V.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS2004-UTF8-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS2004-UTF8-H.bcmap\u0022,\u0022js\\/cmaps\\/UniJIS2004-UTF8-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJIS2004-UTF8-V.bcmap\u0022,\u0022js\\/cmaps\\/UniJISPro-UCS2-HW-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJISPro-UCS2-HW-V.bcmap\u0022,\u0022js\\/cmaps\\/UniJISPro-UCS2-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJISPro-UCS2-V.bcmap\u0022,\u0022js\\/cmaps\\/UniJISPro-UTF8-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJISPro-UTF8-V.bcmap\u0022,\u0022js\\/cmaps\\/UniJISX0213-UTF32-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJISX0213-UTF32-H.bcmap\u0022,\u0022js\\/cmaps\\/UniJISX0213-UTF32-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJISX0213-UTF32-V.bcmap\u0022,\u0022js\\/cmaps\\/UniJISX02132004-UTF32-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJISX02132004-UTF32-H.bcmap\u0022,\u0022js\\/cmaps\\/UniJISX02132004-UTF32-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniJISX02132004-UTF32-V.bcmap\u0022,\u0022js\\/cmaps\\/UniKS-UCS2-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniKS-UCS2-H.bcmap\u0022,\u0022js\\/cmaps\\/UniKS-UCS2-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniKS-UCS2-V.bcmap\u0022,\u0022js\\/cmaps\\/UniKS-UTF16-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniKS-UTF16-H.bcmap\u0022,\u0022js\\/cmaps\\/UniKS-UTF16-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniKS-UTF16-V.bcmap\u0022,\u0022js\\/cmaps\\/UniKS-UTF32-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniKS-UTF32-H.bcmap\u0022,\u0022js\\/cmaps\\/UniKS-UTF32-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniKS-UTF32-V.bcmap\u0022,\u0022js\\/cmaps\\/UniKS-UTF8-H.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniKS-UTF8-H.bcmap\u0022,\u0022js\\/cmaps\\/UniKS-UTF8-V.dist.bcmap\u0022:\u0022js\\/cmaps\\/UniKS-UTF8-V.bcmap\u0022,\u0022js\\/cmaps\\/V.dist.bcmap\u0022:\u0022js\\/cmaps\\/V.bcmap\u0022,\u0022js\\/cmaps\\/WP-Symbol.dist.bcmap\u0022:\u0022js\\/cmaps\\/WP-Symbol.bcmap\u0022,\u0022js\\/rollbar.js\\/rollbar.min.dist.js\u0022:\u0022js\\/rollbar.js\\/rollbar.min.js\u0022,\u0022js\\/common.14725093.dist.js.LICENSE.dist.txt\u0022:\u0022js\\/common.14725093.dist.js.LICENSE.txt\u0022,\u0022js\\/d029fd5b14fd47a43a5d.worker.dist.js\u0022:\u0022js\\/d029fd5b14fd47a43a5d.worker.js\u0022,\u0022js\\/d029fd5b14fd47a43a5d.worker.js.LICENSE.dist.txt\u0022:\u0022js\\/d029fd5b14fd47a43a5d.worker.js.LICENSE.txt\u0022,\u0022js\\/employees.46471f78.dist.js.LICENSE.dist.txt\u0022:\u0022js\\/employees.46471f78.dist.js.LICENSE.txt\u0022,\u0022js\\/global.67b55449.dist.js.LICENSE.dist.txt\u0022:\u0022js\\/global.67b55449.dist.js.LICENSE.txt\u0022,\u0022js\\/greenhouse.854494fa.dist.js.LICENSE.dist.txt\u0022:\u0022js\\/greenhouse.854494fa.dist.js.LICENSE.txt\u0022,\u0022js\\/head.b82c5521.dist.js.LICENSE.dist.txt\u0022:\u0022js\\/head.b82c5521.dist.js.LICENSE.txt\u0022,\u0022js\\/pdfjsWorker.a4eb4e3e.dist.js.LICENSE.dist.txt\u0022:\u0022js\\/pdfjsWorker.a4eb4e3e.dist.js.LICENSE.txt\u0022,\u0022js\\/settings.3d34b8cd.dist.js.LICENSE.dist.txt\u0022:\u0022js\\/settings.3d34b8cd.dist.js.LICENSE.txt\u0022,\u0022js\\/vendor.251019e6.dist.js.LICENSE.dist.txt\u0022:\u0022js\\/vendor.251019e6.dist.js.LICENSE.txt\u0022,\u0022i18n_strings.json\u0022:\u00226a0eb9\u0022}");
+	})();
+</script>
+	<script type="text/javascript">
+		var IS_IE_OR_EDGE = false;
+	</script>
+	<script type="text/javascript" src="./BambooHR_files/head.b82c5521.dist.js.téléchargement"></script><style>/* -------------------------------------------------
+COLOR RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+UTILITIES
+------------------------------------------------- */
+@keyframes processing--62bb9987 {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 133% 0;
+	}
+}
+
+/* -------------------------------------------------
+COLOR RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+UTILITIES
+------------------------------------------------- */
+/* stylelint-disable sh-waqar/declaration-use-variable */
+/* -------------------------------------------------
+FONT SIZE AND LINE HEIGHT RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+MIXIN FOR INCLUDING BOTH
+------------------------------------------------- */
+/* -------------------------------------------------
+FONT WEIGHT RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+ITALIC
+------------------------------------------------- */
+/* -------------------------------------------------
+MONOSPACE
+------------------------------------------------- */
+/*****************************************************************************
+Floating Icon Buttons
+*****************************************************************************/
+.fab-FloatingIconButton--315034f9 {
+	background-color: transparent;
+	align-items: center;
+	box-shadow: none;
+	border: none;
+	border-radius: 2px;
+	display: inline-flex;
+	height: 34px;
+	justify-content: center;
+	padding: 0 12px;
+	transition: all 0.2s ease-in-out;
+	user-select: none;
+}
+
+.fab-FloatingIconButton__icon--306a68c5,
+.fab-FloatingIconButton--315034f9 svg {
+	fill: #527a00;
+	fill: var(--fabric-theme-base, #527a00);
+}
+
+.fab-FloatingIconButton__icon--306a68c5 {
+	display: flex;
+}
+
+.fab-FloatingIconButton__icon--left--c1a79c76 {
+	margin-right: 8px;
+}
+
+.fab-FloatingIconButton__icon--right--0a83234a {
+	margin-left: 8px;
+}
+
+.fab-FloatingIconButton--315034f9:hover {
+	background-color: #fff;
+	box-shadow: inset 0 0 0 1px #c0e94f, 0 1px 0 0 rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 0 0 1px var(--fabric-theme-lightest, #c0e94f), 0 1px 0 0 rgba(0, 0, 0, 0.05);
+	cursor: pointer;
+}
+
+.fab-FloatingIconButton--315034f9:focus, .fab-FloatingIconButton--focused--ad9a8373 {
+	background-color: #fff;
+	box-shadow: 0 0 0 2px rgba(192, 233, 79, 0.35), inset 0 0 0 1px #c0e94f;
+	box-shadow: 0 0 0 2px var(--fabric-theme-lightest35, rgba(192, 233, 79, 0.35)), inset 0 0 0 1px var(--fabric-theme-lightest, #c0e94f);
+	outline: 0;
+	text-decoration: underline;
+}
+
+.fab-FloatingIconButton--315034f9:active, .fab-FloatingIconButton--active--f4678693 {
+	background-color: #fff;
+	box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, 0.12), inset 0 0 0 1px #c0e94f, 0 1px 0 0 rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, 0.12), inset 0 0 0 1px var(--fabric-theme-lightest, #c0e94f), 0 1px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.fab-FloatingIconButton--secondary--b2dfbe84 .fab-FloatingIconButton__icon--306a68c5,
+.fab-FloatingIconButton--secondary--b2dfbe84 svg {
+	fill: #686868;
+}
+
+.fab-FloatingIconButton--secondary--b2dfbe84:hover {
+	background-color: #fff;
+	box-shadow: inset 0 0 0 1px #999, 0 1px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.fab-FloatingIconButton--secondary--b2dfbe84:hover .fab-FloatingIconButton__icon--306a68c5,
+.fab-FloatingIconButton--secondary--b2dfbe84:hover svg {
+	fill: #555;
+}
+
+.fab-FloatingIconButton--secondary--b2dfbe84:focus, .fab-FloatingIconButton--secondary--b2dfbe84.fab-FloatingIconButton--focused--ad9a8373 {
+	background-color: #fff;
+	box-shadow: 0 0 0 2px #e0e0e0, inset 0 0 0 1px #999;
+}
+
+.fab-FloatingIconButton--secondary--b2dfbe84:active, .fab-FloatingIconButton--secondary--b2dfbe84.fab-FloatingIconButton--active--f4678693 {
+	background-color: #fff;
+	box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, 0.12), inset 0 0 0 1px #999, 0 1px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.fab-FloatingIconButton--dark--660b4a52 {
+	background-color: transparent;
+}
+
+.fab-FloatingIconButton--dark--660b4a52 .fab-FloatingIconButton__icon--306a68c5,
+.fab-FloatingIconButton--dark--660b4a52 svg {
+	fill: #ebebeb;
+}
+
+.fab-FloatingIconButton--dark--660b4a52:hover {
+	background-color: transparent;
+	box-shadow: inset 0 0 0 1px #fff, 0 2px 2px 0 rgba(0, 0, 0, 0.9);
+}
+
+.fab-FloatingIconButton--dark--660b4a52:hover .fab-FloatingIconButton__icon--306a68c5,
+.fab-FloatingIconButton--dark--660b4a52:hover svg {
+	fill: #fff;
+}
+
+.fab-FloatingIconButton--dark--660b4a52:focus, .fab-FloatingIconButton--dark--660b4a52.fab-FloatingIconButton--focused--ad9a8373 {
+	background-color: transparent;
+	box-shadow: inset 0 0 0 1px #fff, 0 1px 0 0 rgba(0, 0, 0, 0.05), 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+.fab-FloatingIconButton--dark--660b4a52:active, .fab-FloatingIconButton--dark--660b4a52.fab-FloatingIconButton--active--f4678693 {
+	background-color: transparent;
+	box-shadow: inset 0 0 0 1px #fff, inset 0 2px 1px 0 rgba(0, 0, 0, 0.75);
+}
+
+.fab-FloatingIconButton--315034f9:disabled, .fab-FloatingIconButton--315034f9:disabled:active, .fab-FloatingIconButton--315034f9:disabled:focus, .fab-FloatingIconButton--315034f9:disabled:hover {
+	box-shadow: none;
+	cursor: default;
+	text-decoration: none;
+}
+
+.fab-FloatingIconButton--315034f9:disabled .fab-FloatingIconButton__icon--306a68c5,
+.fab-FloatingIconButton--315034f9:disabled svg, .fab-FloatingIconButton--315034f9:disabled:active .fab-FloatingIconButton__icon--306a68c5,
+.fab-FloatingIconButton--315034f9:disabled:active svg, .fab-FloatingIconButton--315034f9:disabled:focus .fab-FloatingIconButton__icon--306a68c5,
+.fab-FloatingIconButton--315034f9:disabled:focus svg, .fab-FloatingIconButton--315034f9:disabled:hover .fab-FloatingIconButton__icon--306a68c5,
+.fab-FloatingIconButton--315034f9:disabled:hover svg {
+	fill: #adadad;
+}
+
+.fab-FloatingIconButton--315034f9:disabled.fab-FloatingIconButton--processing--1f4bd7c0, .fab-FloatingIconButton--315034f9:disabled:active.fab-FloatingIconButton--processing--1f4bd7c0, .fab-FloatingIconButton--315034f9:disabled:focus.fab-FloatingIconButton--processing--1f4bd7c0, .fab-FloatingIconButton--315034f9:disabled:hover.fab-FloatingIconButton--processing--1f4bd7c0 {
+	box-shadow: inset 0 0 0 1px #e0e0e0;
+	animation: processing--62bb9987 1.5s linear infinite reverse;
+	background: linear-gradient(90deg, transparent 0%, rgba(173, 173, 173, 0.2) 50%, transparent 100%);
+	background-size: 400% 100%;
+}
+
+.fab-FloatingIconButton--huge--58a1fc67 {
+	height: 64px;
+	padding: 0 24px;
+}
+
+.fab-FloatingIconButton--biggie--b49103c1 {
+	height: 42px;
+	padding: 0 16px;
+}
+
+.fab-FloatingIconButton--large--ae89bce8 {
+	height: 36px;
+	padding: 0 12px;
+}
+
+.fab-FloatingIconButton--small--c9f66ffe {
+	height: 32px;
+	padding: 0 12px;
+}
+
+.fab-FloatingIconButton--teenie--e000db4d {
+	height: 28px;
+	padding: 0 8px;
+}
+
+.fab-FloatingIconButton--noBounding--8026daba {
+	height: unset;
+	padding: 0;
+}
+
+.fab-FloatingIconButton--noBounding--8026daba:active, .fab-FloatingIconButton--noBounding--8026daba:focus, .fab-FloatingIconButton--noBounding--8026daba:hover, .fab-FloatingIconButton--noBounding--8026daba.fab-FloatingIconButton--active--f4678693, .fab-FloatingIconButton--noBounding--8026daba.fab-FloatingIconButton--focused--ad9a8373 {
+	box-shadow: none;
+}
+
+.fab-FloatingIconButton--noBounding--8026daba.fab-FloatingIconButton--secondary--b2dfbe84 .fab-FloatingIconButton__icon--306a68c5,
+.fab-FloatingIconButton--noBounding--8026daba.fab-FloatingIconButton--secondary--b2dfbe84 svg {
+	fill: #999;
+}
+
+.fab-FloatingIconButton--noBounding--8026daba.fab-FloatingIconButton--secondary--b2dfbe84:hover .fab-FloatingIconButton__icon--306a68c5,
+.fab-FloatingIconButton--noBounding--8026daba.fab-FloatingIconButton--secondary--b2dfbe84:hover svg {
+	fill: #555;
+}
+</style><style>/* -------------------------------------------------
+COLOR RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+UTILITIES
+------------------------------------------------- */
+/* -------------------------------------------------
+COLOR RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+UTILITIES
+------------------------------------------------- */
+/* -------------------------------------------------
+COLOR RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+UTILITIES
+------------------------------------------------- */
+/* stylelint-disable sh-waqar/declaration-use-variable */
+/* -------------------------------------------------
+FONT SIZE AND LINE HEIGHT RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+MIXIN FOR INCLUDING BOTH
+------------------------------------------------- */
+/* -------------------------------------------------
+FONT WEIGHT RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+ITALIC
+------------------------------------------------- */
+/* -------------------------------------------------
+MONOSPACE
+------------------------------------------------- */
+/* -------------------------------------------------
+COLOR RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+UTILITIES
+------------------------------------------------- */
+/* stylelint-disable sh-waqar/declaration-use-variable */
+/* -------------------------------------------------
+FONT SIZE AND LINE HEIGHT RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+MIXIN FOR INCLUDING BOTH
+------------------------------------------------- */
+/* -------------------------------------------------
+FONT WEIGHT RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+ITALIC
+------------------------------------------------- */
+/* -------------------------------------------------
+MONOSPACE
+------------------------------------------------- */
+/* -------------------------------------------------
+INPUT HEIGHT RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+INPUT LENGTH RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+MIXIN FOR INCLUDING BOTH FONT SIZE & HEIGHT
+------------------------------------------------- */
+.fab-SelectToggle--a88d145d {
+	cursor: pointer;
+	min-width: 96px;
+	position: relative;
+	text-align: left;
+}
+
+.fab-SelectToggle--sizeBiggie--82e09dd8 {
+	font-size: 18px;
+	height: 42px;
+}
+
+.fab-SelectToggle--sizeLarge--71dcfb94 {
+	font-size: 16px;
+	height: 36px;
+}
+
+.fab-SelectToggle--sizeMedium--7d18c7bd {
+	font-size: 15px;
+	height: 34px;
+}
+
+.fab-SelectToggle--sizeSmall--60e071ad {
+	font-size: 14px;
+	height: 32px;
+}
+
+.fab-SelectToggle--sizeTeenie--0f37022f {
+	font-size: 13px;
+	height: 28px;
+}
+
+.fab-SelectToggle--width1--d47ca95a {
+	width: 48px;
+}
+
+.fab-SelectToggle--width2--2fad1eb6 {
+	width: 64px;
+}
+
+.fab-SelectToggle--width3--d57b4b95 {
+	width: 96px;
+}
+
+.fab-SelectToggle--width4--7b2b9b43 {
+	width: 128px;
+}
+
+.fab-SelectToggle--width5--58751ee5 {
+	width: 160px;
+}
+
+.fab-SelectToggle--width6--2a3693bd {
+	width: 192px;
+}
+
+.fab-SelectToggle--width7--dc0650d8 {
+	width: 224px;
+}
+
+.fab-SelectToggle--width8--273ea934 {
+	width: 288px;
+}
+
+.fab-SelectToggle--width9--a9a0aaf2 {
+	width: 352px;
+}
+
+.fab-SelectToggle--width10--ae8f9806 {
+	width: 448px;
+}
+
+.fab-SelectToggle--width100--2fee35b1 {
+	width: 100%;
+}
+
+.fab-SelectToggle--clearable--c04a71f2 .fab-SelectToggle__clearButton--f0d3c642 {
+	display: flex;
+}
+
+.fab-SelectToggle--focused--6bc035d6 .fab-SelectToggle__innerFacade--c6df68c2 {
+	box-shadow: 0 0 0 2px rgba(192, 233, 79, 0.35);
+	box-shadow: 0 0 0 2px var(--fabric-theme-lightest35, rgba(192, 233, 79, 0.35));
+	outline: 0;
+	border-color: #82af13;
+	border-color: var(--fabric-theme-lighter, #82af13);
+}
+
+.fab-SelectToggle--focused--6bc035d6 .fab-SelectToggle__innerFacade--errorCondition--a1b81020 {
+	border-color: #c20b0b;
+	box-shadow: 0 0 0 2px rgba(194, 11, 11, 0.15);
+}
+
+.fab-SelectToggle--focused--6bc035d6 .fab-SelectToggle__innerFacade--infoCondition--33abc64f {
+	border-color: #0772b3;
+	box-shadow: 0 0 0 2px rgba(7, 114, 179, 0.15);
+}
+
+.fab-SelectToggle--focused--6bc035d6 .fab-SelectToggle__innerFacade--warningCondition--30912909 {
+	border-color: #bd5800;
+	box-shadow: 0 0 0 2px rgba(189, 88, 0, 0.15);
+}
+
+.fab-SelectToggle--disabled--bdd1ca9f {
+	cursor: default;
+}
+
+.fab-SelectToggle--disabled--bdd1ca9f .fab-SelectToggle__guts--f2681aa2,
+.fab-SelectToggle--disabled--bdd1ca9f .fab-SelectToggle__innerFacade--c6df68c2 {
+	border-color: #e0e0e0;
+	box-shadow: none;
+	color: #adadad;
+}
+
+.fab-SelectToggle--disabled--bdd1ca9f .fab-SelectToggle__placeholder--bbb0c133 {
+	color: #adadad;
+}
+
+.fab-SelectToggle--disabled--bdd1ca9f .fab-SelectToggle__toggleButton--571e1ea2 {
+	fill: #ccc;
+}
+
+.fab-SelectToggle--disabled--bdd1ca9f .fab-SelectToggle__clearButton--f0d3c642 {
+	cursor: default;
+	fill: #e0e0e0;
+}
+
+.fab-SelectToggle--disabled--bdd1ca9f .fab-SelectToggle__clearButton--f0d3c642:hover {
+	fill: #e0e0e0;
+}
+
+.fab-SelectToggle--opened--bd1625f5.fab-SelectToggle--bottom--6c16931d .fab-SelectToggle__list--7ace4870 {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.fab-SelectToggle--opened--bd1625f5.fab-SelectToggle--bottom--6c16931d .fab-SelectToggle__innerFacade--c6df68c2,
+.fab-SelectToggle--opened--bd1625f5.fab-SelectToggle--bottom--6c16931d .fab-SelectToggle__outerFacade--e43110f4 {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	bottom: 0;
+}
+
+.fab-SelectToggle--opened--bd1625f5.fab-SelectToggle--top--4f2b48e2 .fab-SelectToggle__list--7ace4870 {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.fab-SelectToggle--opened--bd1625f5.fab-SelectToggle--top--4f2b48e2 .fab-SelectToggle__innerFacade--c6df68c2,
+.fab-SelectToggle--opened--bd1625f5.fab-SelectToggle--top--4f2b48e2 .fab-SelectToggle__outerFacade--e43110f4 {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	top: 0;
+}
+
+.fab-SelectToggle--view--1af65bcc:hover .fab-SelectToggle__innerFacade--c6df68c2 {
+	border-color: #ccc;
+}
+
+.fab-SelectToggle--view--1af65bcc:hover .fab-SelectToggle__toggleButton--571e1ea2 {
+	visibility: visible;
+}
+
+.fab-SelectToggle--view--1af65bcc .fab-SelectToggle__innerFacade--c6df68c2 {
+	border-color: #e0e0e0;
+}
+
+.fab-SelectToggle--view--1af65bcc .fab-SelectToggle__toggleButton--571e1ea2 {
+	visibility: hidden;
+}
+
+.fab-SelectToggle--view--1af65bcc.fab-SelectToggle--focused--6bc035d6 .fab-SelectToggle__innerFacade--c6df68c2 {
+	border-color: #82af13;
+	border-color: var(--fabric-theme-lighter, #82af13);
+}
+
+.fab-SelectToggle__clearButton--f0d3c642 {
+	align-items: center;
+	display: none;
+	cursor: pointer;
+	fill: #adadad;
+	flex-shrink: 0;
+	height: 100%;
+	justify-content: center;
+	width: 20px;
+}
+
+.fab-SelectToggle__clearButton--f0d3c642:hover {
+	fill: #686868;
+}
+
+.fab-SelectToggle__content--ce024bc5, .fab-SelectToggle__placeholder--bbb0c133 {
+	display: block;
+	flex-grow: 1;
+	overflow: hidden;
+	margin-right: 4px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.fab-SelectToggle__guts--f2681aa2 {
+	align-items: center;
+	background-color: #fff;
+	border-radius: 2px;
+	display: flex;
+	flex-basis: 100%;
+	font-size: inherit;
+	height: 100%;
+	padding: 1px 1px 1px 11px;
+	user-select: none;
+	box-sizing: border-box;
+	color: #222;
+}
+
+.fab-SelectToggle__innerFacade--c6df68c2 {
+	border-color: #ccc;
+	border-radius: 2px;
+	border-style: solid;
+	border-width: 1px;
+	bottom: 2px;
+	left: 2px;
+	pointer-events: none;
+	position: absolute;
+	right: 2px;
+	top: 2px;
+}
+
+.fab-SelectToggle__innerFacade--errorCondition--a1b81020 {
+	border-color: #c20b0b;
+}
+
+.fab-SelectToggle__innerFacade--infoCondition--33abc64f {
+	border-color: #0772b3;
+}
+
+.fab-SelectToggle__innerFacade--warningCondition--30912909 {
+	border-color: #bd5800;
+}
+
+.fab-SelectToggle__outerFacade--e43110f4 {
+	border-radius: 2px;
+	bottom: -2px;
+	overflow: hidden;
+	pointer-events: none;
+	position: absolute;
+	left: -2px;
+	right: -2px;
+	top: -2px;
+}
+
+.fab-SelectToggle__toggleButton--571e1ea2 {
+	align-items: center;
+	background-color: #f4f4f4;
+	display: inline-flex;
+	flex-shrink: 0;
+	fill: #686868;
+	height: 100%;
+	justify-content: center;
+	margin-left: 4px;
+	width: 25px;
+}
+
+.fab-SelectTextToggle--44e0499a {
+	color: #0772b3;
+	cursor: pointer;
+	display: flex;
+	font-size: inherit;
+	text-align: left;
+}
+
+.fab-SelectTextToggle--44e0499a:hover, .fab-SelectTextToggle--focused--5930e52d {
+	color: #527a00;
+	color: var(--fabric-theme-base, #527a00);
+	text-decoration: underline;
+}
+
+.fab-SelectTextToggle--44e0499a:hover .fab-SelectTextToggle__toggleButton--6a949650, .fab-SelectTextToggle--focused--5930e52d .fab-SelectTextToggle__toggleButton--6a949650 {
+	fill: #527a00;
+	fill: var(--fabric-theme-base, #527a00);
+}
+
+.fab-SelectTextToggle--opened--534f73bd {
+	color: #527a00;
+	color: var(--fabric-theme-base, #527a00);
+	text-decoration: none;
+}
+
+.fab-SelectTextToggle--opened--534f73bd:hover {
+	text-decoration: none;
+}
+
+.fab-SelectTextToggle--opened--534f73bd .fab-SelectTextToggle__toggleButton--6a949650 {
+	fill: #527a00;
+	fill: var(--fabric-theme-base, #527a00);
+}
+
+.fab-SelectTextToggle--dark--a979dcae {
+	color: #fff;
+}
+
+.fab-SelectTextToggle--dark--a979dcae:hover {
+	color: #fff;
+}
+
+.fab-SelectTextToggle--dark--a979dcae:hover .fab-SelectTextToggle__toggleButton--6a949650 {
+	fill: #fff;
+}
+
+.fab-SelectTextToggle--dark--a979dcae .fab-SelectTextToggle__toggleButton--6a949650 {
+	fill: #fff;
+}
+
+.fab-SelectTextToggle__clearButton--fe35351a {
+	display: none;
+}
+
+.fab-SelectTextToggle__guts--31536323 {
+	align-items: center;
+	display: flex;
+	flex-basis: auto;
+	font-size: inherit;
+	font-weight: 600;
+	min-width: 1px;
+	user-select: none;
+}
+
+.fab-SelectTextToggle__toggleButton--6a949650 {
+	display: inline-flex;
+	flex-shrink: 0;
+	fill: #0772b3;
+	margin-left: 8px;
+}
+</style><style>/* -------------------------------------------------
+COLOR RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+UTILITIES
+------------------------------------------------- */
+/* GOTCHA: The colors for the imported types are hardcoded and will need to be updated if the colors change in the main app. */
+.FileIcon--b32a077b {
+	align-items: center;
+	display: inline-flex;
+	fill: #000;
+	justify-content: center;
+	line-height: 0;
+}
+
+.FileIcon--lime1--5206b1bc {
+	fill: #527a00;
+}
+
+.FileIcon--lime1-light--efd9c48e {
+	fill: #6a950a;
+}
+
+.FileIcon--lime1-lighter--c0e82cc7 {
+	fill: #82af13;
+}
+
+.FileIcon--lime1-lightest--05aa8701 {
+	fill: #c0e94f;
+}
+
+.FileIcon--lime2--8c3ccddf {
+	fill: #456e00;
+}
+
+.FileIcon--lime2-light--fdb72e15 {
+	fill: #5e8500;
+}
+
+.FileIcon--lime2-lighter--8c5b49e4 {
+	fill: #769c00;
+}
+
+.FileIcon--lime2-lightest--a5d9ffdd {
+	fill: #a8cd42;
+}
+
+.FileIcon--lime3--2eecda55 {
+	fill: #365900;
+}
+
+.FileIcon--lime3-light--3e3263b6 {
+	fill: #4e7000;
+}
+
+.FileIcon--lime3-lighter--cefce5e1 {
+	fill: #658600;
+}
+
+.FileIcon--lime3-lightest--07675859 {
+	fill: #96b63d;
+}
+
+.FileIcon--lime4--1cb7d167 {
+	fill: #2b4900;
+}
+
+.FileIcon--lime4-light--944ee5d4 {
+	fill: #425f01;
+}
+
+.FileIcon--lime4-lighter--1317fcd5 {
+	fill: #587501;
+}
+
+.FileIcon--lime4-lightest--40a5859a {
+	fill: #88a43a;
+}
+
+.FileIcon--green1--f3874beb {
+	fill: #188124;
+}
+
+.FileIcon--green1-light--cf51bd70 {
+	fill: #39a33e;
+}
+
+.FileIcon--green1-lighter--00173d7f {
+	fill: #59c457;
+}
+
+.FileIcon--green1-lightest--aef16919 {
+	fill: #8df886;
+}
+
+.FileIcon--green2--45f9aa8a {
+	fill: #007400;
+}
+
+.FileIcon--green2-light--9bc72cfb {
+	fill: #1e901c;
+}
+
+.FileIcon--green2-lighter--356cf7b5 {
+	fill: #3cab38;
+}
+
+.FileIcon--green2-lightest--e0a938ee {
+	fill: #73de67;
+}
+
+.FileIcon--green3--09c2a541 {
+	fill: #005d00;
+}
+
+.FileIcon--green3-light--c447e74e {
+	fill: #187416;
+}
+
+.FileIcon--green3-lighter--d17d6a92 {
+	fill: #308b2c;
+}
+
+.FileIcon--green3-lightest--bbe10279 {
+	fill: #64bc59;
+}
+
+.FileIcon--green4--d101592f {
+	fill: #004900;
+}
+
+.FileIcon--green4-light--8f04a7bc {
+	fill: #056004;
+}
+
+.FileIcon--green4-lighter--482d5a28 {
+	fill: #0a7607;
+}
+
+.FileIcon--green4-lightest--ac29677d {
+	fill: #4ba63c;
+}
+
+.FileIcon--teal1--27c59a3b {
+	fill: #017971;
+}
+
+.FileIcon--teal1-light--b051727f {
+	fill: #289990;
+}
+
+.FileIcon--teal1-lighter--1c456312 {
+	fill: #4eb8af;
+}
+
+.FileIcon--teal1-lightest--698fd06f {
+	fill: #83ebe1;
+}
+
+.FileIcon--teal2--321d13d6 {
+	fill: #006f67;
+}
+
+.FileIcon--teal2-light--bb8347aa {
+	fill: #1c877e;
+}
+
+.FileIcon--teal2-lighter--0ea57af0 {
+	fill: #389e95;
+}
+
+.FileIcon--teal2-lightest--b2b65388 {
+	fill: #6ecfc5;
+}
+
+.FileIcon--teal3--b7dd55d5 {
+	fill: #005d56;
+}
+
+.FileIcon--teal3-light--3e315da5 {
+	fill: #14746c;
+}
+
+.FileIcon--teal3-lighter--590d2bc8 {
+	fill: #288b82;
+}
+
+.FileIcon--teal3-lightest--322701ba {
+	fill: #5fbbb1;
+}
+
+.FileIcon--teal4--7e2ed9d8 {
+	fill: #004c45;
+}
+
+.FileIcon--teal4-light--37cc6f48 {
+	fill: #0b635b;
+}
+
+.FileIcon--teal4-lighter--c64525db {
+	fill: #167970;
+}
+
+.FileIcon--teal4-lightest--45a0ead3 {
+	fill: #50a89e;
+}
+
+.FileIcon--blue1--69ec3476 {
+	fill: #0878a1;
+}
+
+.FileIcon--blue1-light--968a4772 {
+	fill: #2f94bf;
+}
+
+.FileIcon--blue1-lighter--fd11d105 {
+	fill: #56afdd;
+}
+
+.FileIcon--blue1-lightest--1720289b {
+	fill: #8ce1ff;
+}
+
+.FileIcon--blue2--c7399431 {
+	fill: #00658e;
+}
+
+.FileIcon--blue2-light--38b2bfa3 {
+	fill: #107ca6;
+}
+
+.FileIcon--blue2-lighter--079012c4 {
+	fill: #2093be;
+}
+
+.FileIcon--blue2-lightest--0f5f596b {
+	fill: #63c3f1;
+}
+
+.FileIcon--blue3--45be2e90 {
+	fill: #00558b;
+}
+
+.FileIcon--blue3-light--12e8102d {
+	fill: #0f6ba3;
+}
+
+.FileIcon--blue3-lighter--191e655c {
+	fill: #1d81bb;
+}
+
+.FileIcon--blue3-lightest--9459b345 {
+	fill: #60b0ee;
+}
+
+.FileIcon--blue4--ac994238 {
+	fill: #003e63;
+}
+
+.FileIcon--blue4-light--70ed4737 {
+	fill: #00547a;
+}
+
+.FileIcon--blue4-lighter--87c6269a {
+	fill: #006991;
+}
+
+.FileIcon--blue4-lightest--5edb1d1c {
+	fill: #4c97c2;
+}
+
+.FileIcon--violet1--59006238 {
+	fill: #4968a9;
+}
+
+.FileIcon--violet1-light--3288ff8d {
+	fill: #627fc2;
+}
+
+.FileIcon--violet1-lighter--37796b96 {
+	fill: #7b96db;
+}
+
+.FileIcon--violet1-lightest--5ce8bb52 {
+	fill: #adc6ff;
+}
+
+.FileIcon--violet2--e60614cd {
+	fill: #2f579f;
+}
+
+.FileIcon--violet2-light--674b5122 {
+	fill: #4a6db8;
+}
+
+.FileIcon--violet2-lighter--d22bedc8 {
+	fill: #6583d1;
+}
+
+.FileIcon--violet2-lightest--86bdaca7 {
+	fill: #98b2ff;
+}
+
+.FileIcon--violet3--860845b8 {
+	fill: #1e488d;
+}
+
+.FileIcon--violet3-light--26f75dfb {
+	fill: #3a5ea6;
+}
+
+.FileIcon--violet3-lighter--5f468ecb {
+	fill: #5673be;
+}
+
+.FileIcon--violet3-lightest--5e004735 {
+	fill: #89a1f1;
+}
+
+.FileIcon--violet4--ae6c067c {
+	fill: #05397b;
+}
+
+.FileIcon--violet4-light--84a0d954 {
+	fill: #264e93;
+}
+
+.FileIcon--violet4-lighter--8be31bcd {
+	fill: #4763ab;
+}
+
+.FileIcon--violet4-lightest--cc4028b1 {
+	fill: #7990dd;
+}
+
+.FileIcon--purple1--7dec8eeb {
+	fill: #8057a8;
+}
+
+.FileIcon--purple1-light--53c53f49 {
+	fill: #996ec1;
+}
+
+.FileIcon--purple1-lighter--b453f1a8 {
+	fill: #b185da;
+}
+
+.FileIcon--purple1-lightest--7e734926 {
+	fill: #e4b5ff;
+}
+
+.FileIcon--purple2--0f2b3c36 {
+	fill: #6a4197;
+}
+
+.FileIcon--purple2-light--d84c9d76 {
+	fill: #8257b0;
+}
+
+.FileIcon--purple2-lighter--548925cd {
+	fill: #9a6dc8;
+}
+
+.FileIcon--purple2-lightest--779da67c {
+	fill: #cc9cfb;
+}
+
+.FileIcon--purple3--4a61100a {
+	fill: #582374;
+}
+
+.FileIcon--purple3-light--56d22086 {
+	fill: #70398c;
+}
+
+.FileIcon--purple3-lighter--a52b8512 {
+	fill: #874fa3;
+}
+
+.FileIcon--purple3-lightest--0cd11986 {
+	fill: #b87dd5;
+}
+
+.FileIcon--purple4--d2210045 {
+	fill: #44195b;
+}
+
+.FileIcon--purple4-light--48230c77 {
+	fill: #5b2e72;
+}
+
+.FileIcon--purple4-lighter--9eb25482 {
+	fill: #714388;
+}
+
+.FileIcon--purple4-lightest--8a116065 {
+	fill: #a16fb8;
+}
+
+.FileIcon--pink1--8718b8f7 {
+	fill: #b14b79;
+}
+
+.FileIcon--pink1-light--59c8b045 {
+	fill: #cb6391;
+}
+
+.FileIcon--pink1-lighter--d6898895 {
+	fill: #e57ba8;
+}
+
+.FileIcon--pink1-lightest--558c0190 {
+	fill: #ffacd9;
+}
+
+.FileIcon--pink2--d86873dc {
+	fill: #9b1f5c;
+}
+
+.FileIcon--pink2-light--e6ec6bf8 {
+	fill: #b63a73;
+}
+
+.FileIcon--pink2-lighter--e56b894e {
+	fill: #d05489;
+}
+
+.FileIcon--pink2-lightest--8053fe84 {
+	fill: #ff85b9;
+}
+
+.FileIcon--pink3--bcc45795 {
+	fill: #9e0057;
+}
+
+.FileIcon--pink3-light--49c71f8c {
+	fill: #b91a6e;
+}
+
+.FileIcon--pink3-lighter--ea1a772a {
+	fill: #d43384;
+}
+
+.FileIcon--pink3-lightest--d5402acb {
+	fill: #ff6ab4;
+}
+
+.FileIcon--pink4--b0bc107c {
+	fill: #70003f;
+}
+
+.FileIcon--pink4-light--38725193 {
+	fill: #8a1355;
+}
+
+.FileIcon--pink4-lighter--2bad45e0 {
+	fill: #a3256a;
+}
+
+.FileIcon--pink4-lightest--82290868 {
+	fill: #d85998;
+}
+
+.FileIcon--red1--e1fc1fcc {
+	fill: #bc363d;
+}
+
+.FileIcon--red1-light--d411eb1e {
+	fill: #d84f53;
+}
+
+.FileIcon--red1-lighter--6a5c08cf {
+	fill: #f46868;
+}
+
+.FileIcon--red1-lightest--95b0c300 {
+	fill: #ff9a96;
+}
+
+.FileIcon--red2--57e43546 {
+	fill: #af0025;
+}
+
+.FileIcon--red2-light--6ef54dd6 {
+	fill: #cc2339;
+}
+
+.FileIcon--red2-lighter--e15a8e72 {
+	fill: #e8454d;
+}
+
+.FileIcon--red2-lightest--b5dec935 {
+	fill: #ff7979;
+}
+
+.FileIcon--red3--adb8dbb8 {
+	fill: #99000a;
+}
+
+.FileIcon--red3-light--7ead3083 {
+	fill: #b6151e;
+}
+
+.FileIcon--red3-lighter--69b91ff2 {
+	fill: #d22931;
+}
+
+.FileIcon--red3-lightest--e2b809bf {
+	fill: #ff615b;
+}
+
+.FileIcon--red4--7ab1ebfa {
+	fill: #7f0000;
+}
+
+.FileIcon--red4-light--644df025 {
+	fill: #9b0e12;
+}
+
+.FileIcon--red4-lighter--d88fe07e {
+	fill: #b71b23;
+}
+
+.FileIcon--red4-lightest--3380c510 {
+	fill: #f0554c;
+}
+
+.FileIcon--orange1--2bbc06d6 {
+	fill: #ba4e1c;
+}
+
+.FileIcon--orange1-light--8f7d0c3d {
+	fill: #db6733;
+}
+
+.FileIcon--orange1-lighter--aceb250f {
+	fill: #fb7f49;
+}
+
+.FileIcon--orange1-lightest--499b2aa9 {
+	fill: #ffb077;
+}
+
+.FileIcon--orange2--d4182e11 {
+	fill: #bf3100;
+}
+
+.FileIcon--orange2-light--a4b83cbe {
+	fill: #dc4b11;
+}
+
+.FileIcon--orange2-lighter--56269303 {
+	fill: #f96422;
+}
+
+.FileIcon--orange2-lightest--00ae1c7d {
+	fill: #ff9651;
+}
+
+.FileIcon--orange3--6c530a9a {
+	fill: #9c2100;
+}
+
+.FileIcon--orange3-light--962c399a {
+	fill: #b93a0d;
+}
+
+.FileIcon--orange3-lighter--b12b81da {
+	fill: #d55319;
+}
+
+.FileIcon--orange3-lightest--74f0c292 {
+	fill: #ff8347;
+}
+
+.FileIcon--orange4--b73c26ca {
+	fill: #811200;
+}
+
+.FileIcon--orange4-light--750313f2 {
+	fill: #9c2c04;
+}
+
+.FileIcon--orange4-lighter--b397eea8 {
+	fill: #b74507;
+}
+
+.FileIcon--orange4-lightest--51d73af7 {
+	fill: #f07438;
+}
+
+.FileIcon--bronze1--b0090331 {
+	fill: #a25a00;
+}
+
+.FileIcon--bronze1-light--f13df8e3 {
+	fill: #ca7804;
+}
+
+.FileIcon--bronze1-lighter--44cbcecc {
+	fill: #f19508;
+}
+
+.FileIcon--bronze1-lightest--7bfa8438 {
+	fill: #ffc649;
+}
+
+.FileIcon--bronze2--91fec913 {
+	fill: #ae4f00;
+}
+
+.FileIcon--bronze2-light--df0c45ca {
+	fill: #cb6600;
+}
+
+.FileIcon--bronze2-lighter--2d5ef8a5 {
+	fill: #e77d00;
+}
+
+.FileIcon--bronze2-lightest--671c3097 {
+	fill: #ffad41;
+}
+
+.FileIcon--bronze3--1d19616d {
+	fill: #8e3f00;
+}
+
+.FileIcon--bronze3-light--a2f2fb3c {
+	fill: #aa5500;
+}
+
+.FileIcon--bronze3-lighter--ce1a80a2 {
+	fill: #c56b00;
+}
+
+.FileIcon--bronze3-lightest--d1193f0f {
+	fill: #fd9a3c;
+}
+
+.FileIcon--bronze4--60ab6373 {
+	fill: #5a330c;
+}
+
+.FileIcon--bronze4-light--96c94a7f {
+	fill: #724820;
+}
+
+.FileIcon--bronze4-lighter--29332c16 {
+	fill: #8a5d34;
+}
+
+.FileIcon--bronze4-lightest--207eb702 {
+	fill: #bc8a5f;
+}
+
+.FileIcon--brown1--9673b76d {
+	fill: #8f6900;
+}
+
+.FileIcon--brown1-light--b662ecb3 {
+	fill: #ba8b00;
+}
+
+.FileIcon--brown1-lighter--fdfac18d {
+	fill: #e4ac00;
+}
+
+.FileIcon--brown1-lightest--12e7ed93 {
+	fill: #ffdd4a;
+}
+
+.FileIcon--brown2--d57cab37 {
+	fill: #7f5b00;
+}
+
+.FileIcon--brown2-light--c685f1b3 {
+	fill: #a87c04;
+}
+
+.FileIcon--brown2-lighter--f5e7d542 {
+	fill: #d09d08;
+}
+
+.FileIcon--brown2-lightest--9b73529e {
+	fill: #ffce49;
+}
+
+.FileIcon--brown3--7fbb9b05 {
+	fill: #655116;
+}
+
+.FileIcon--brown3-light--2f7d3c33 {
+	fill: #7d672c;
+}
+
+.FileIcon--brown3-lighter--124e9be2 {
+	fill: #957d41;
+}
+
+.FileIcon--brown3-lightest--2391cf1b {
+	fill: #c7ac6d;
+}
+
+.FileIcon--brown4--9d44a33b {
+	fill: #4e3f11;
+}
+
+.FileIcon--brown4-light--5dbabc94 {
+	fill: #655426;
+}
+
+.FileIcon--brown4-lighter--30f34d1e {
+	fill: #7c693a;
+}
+
+.FileIcon--brown4-lightest--2debc37c {
+	fill: #ad9765;
+}
+
+.FileIcon--gray1--1b4e2892 {
+	fill: #585858;
+}
+
+.FileIcon--gray1-light--ccc6fb5b {
+	fill: #6f6f6f;
+}
+
+.FileIcon--gray1-lighter--65ead05c {
+	fill: #858585;
+}
+
+.FileIcon--gray1-lightest--db019f2a {
+	fill: #b5b5b5;
+}
+
+.FileIcon--gray2--939c52e6 {
+	fill: #383838;
+}
+
+.FileIcon--gray2-light--d37cedf9 {
+	fill: #4d4d4d;
+}
+
+.FileIcon--gray2-lighter--6cd33255 {
+	fill: #626262;
+}
+
+.FileIcon--gray2-lightest--4f8bd0bf {
+	fill: #8f8f8f;
+}
+
+.FileIcon--info--dd926dbd {
+	fill: #0772b3;
+}
+
+.FileIcon--infoDark--f70c2129 {
+	fill: #004279;
+}
+
+.FileIcon--danger--106d0067 {
+	fill: #c20b0b;
+}
+
+.FileIcon--dangerDark--a20c404f {
+	fill: #890000;
+}
+
+.FileIcon--attention--2f9484eb {
+	fill: #bd5800;
+}
+
+.FileIcon--attentionDark--dfd4c8aa {
+	fill: #872B00;
+}
+
+.FileIcon--success--cc3b9ca5 {
+	fill: #0e840d;
+}
+
+.FileIcon--successDark--a64de624 {
+	fill: #005600;
+}
+
+.FileIcon--action--666c76ed {
+	fill: #ffe30a;
+}
+
+.FileIcon--white--4330be2b {
+	fill: #fff;
+}
+
+.FileIcon--gray1--1b4e2892 {
+	fill: #f4f4f4;
+}
+
+.FileIcon--gray2--939c52e6 {
+	fill: #ebebeb;
+}
+
+.FileIcon--gray3--f4a63461 {
+	fill: #e0e0e0;
+}
+
+.FileIcon--gray4--2ff8e6cd {
+	fill: #ccc;
+}
+
+.FileIcon--gray5--848f2566 {
+	fill: #adadad;
+}
+
+.FileIcon--gray6--b8efe728 {
+	fill: #999;
+}
+
+.FileIcon--gray7--193bfe54 {
+	fill: #686868;
+}
+
+.FileIcon--gray8--30b6a749 {
+	fill: #555;
+}
+
+.FileIcon--gray9--ae3e4bf7 {
+	fill: #444;
+}
+
+.FileIcon--gray10--06c3611f {
+	fill: #222;
+}
+
+.FileIcon__type--doc--8e8ea841 {
+	fill: #2076bb;
+}
+
+.FileIcon__type--esig--dc9b6411 {
+	fill: #87328f;
+}
+
+.FileIcon__type--excel--45a20252 {
+	fill: #42a149;
+}
+
+.FileIcon__type--image--6ab2fc25 {
+	fill: #686868;
+}
+
+.FileIcon__type--link--6bd8e8bd {
+	fill: #686868;
+}
+
+.FileIcon__type--mail--a097ac92 {
+	fill: #686868;
+}
+
+.FileIcon__type--pdf--61028b5d {
+	fill: #c32a2f;
+}
+
+.FileIcon__type--powerpoint--edcba9f7 {
+	fill: #c26c1a;
+}
+
+.FileIcon__type--text--20524566 {
+	fill: #686868;
+}
+
+.FileIcon__type--unknown--2bab6651 {
+	fill: #686868;
+}
+
+.FileIcon__type--zip--8d114c2a {
+	fill: #686868;
+}
+</style><style>/* -------------------------------------------------
+COLOR RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+UTILITIES
+------------------------------------------------- */
+/* stylelint-disable sh-waqar/declaration-use-variable */
+/* -------------------------------------------------
+FONT SIZE AND LINE HEIGHT RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+MIXIN FOR INCLUDING BOTH
+------------------------------------------------- */
+/* -------------------------------------------------
+FONT WEIGHT RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+ITALIC
+------------------------------------------------- */
+/* -------------------------------------------------
+MONOSPACE
+------------------------------------------------- */
+/* -------------------------------------------------
+COLOR RETRIEVAL FROM JSON
+------------------------------------------------- */
+/* -------------------------------------------------
+UTILITIES
+------------------------------------------------- */
+.fab-Slidedown--bee055c6 {
+	align-items: flex-start;
+	border-radius: 0 0 3px 3px;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+	box-sizing: border-box;
+	color: #fff;
+	display: flex;
+	min-height: 48px;
+	margin: 0 auto;
+	padding: 13px 8px 13px 15px;
+	pointer-events: all;
+	position: relative;
+	text-align: left;
+	width: 832px;
+}
+
+.fab-Slidedown__action--2613c068 {
+	margin: 0 4px 0 50px;
+	padding-right: 12px;
+	position: relative;
+	top: -1px;
+}
+
+.fab-Slidedown__action-link--9fbfa732 {
+	color: #fff;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: 800;
+}
+
+.fab-Slidedown__action-link--9fbfa732:hover {
+	color: #fff;
+}
+
+.fab-Slidedown__action--2613c068:not(:last-child)::before {
+	background-color: rgba(255, 255, 255, 0.6);
+	content: '';
+	height: 20px;
+	pointer-events: none;
+	position: absolute;
+	right: 0;
+	top: 3px;
+	width: 1px;
+}
+
+.fab-Slidedown__icon--20c3a7e7 {
+	align-items: center;
+	display: flex;
+	fill: #fff;
+	margin-right: 8px;
+}
+
+.fab-Slidedown__text--c71ae9c5 {
+	flex: 1;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 22px;
+}
+
+.fab-Slidedown--error--c29afab6 {
+	background-color: #c20b0b;
+}
+
+.fab-Slidedown--info--5b3b49af {
+	background-color: #0772b3;
+}
+
+.fab-Slidedown--success--be8bee06 {
+	background-color: #0e840d;
+}
+</style><style>.fab-SlidedownPortal--1afbc6c4 {
+	height: 0;
+	pointer-events: none;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+</style>
+
+	
+
+
+		<script>
+		(function(apiKey){
+			(function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
+				v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){
+					o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
+				y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo.io/agent/static/'+apiKey+'/pendo.js';
+				z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
+
+			pendo.initialize({
+				excludeAllText: true,
+
+				visitor: {
+					id:              '',
+					role:            '',
+					perms:           ''
+				},
+
+				account: {
+					id:              '72746',
+					planLevel:       '',
+					accountType:     '',
+					haveGoals:       false,
+					havePerformance: false,
+					haveTimeTracking:false,
+					newBenefits:     '',
+					track:           '',
+					version:         ''
+				}
+			});
+		})('477df29a-6276-4aaa-4440-ffe442c6d37d');
+	</script>
+<style data-emotion="css"></style><style data-jss="" data-meta="makeStyles">
+.jss1 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+}
+</style></head><div id="screen-shader" style="            transition: opacity 0.1s ease 0s;             z-index: 2147483647;            margin: 0;             border-radius: 0;             padding: 0;             background: #fab760 !important;             pointer-events: none;             position: fixed;             top: -10%;             right: -10%;             width: 120%;             height: 120%;             opacity: 0.4320;            mix-blend-mode: multiply;             display: block;        "></div>
+<body class="ResAts ResAts--view" ba-theme="orange1" data-feature-toggles="jade display_email_status edit_applicant_source view_applicant_source prod_test_toggle new_turnover_report time_tracking_hours_import payroll_events pay_type_changes greenhouse_payroll_resellers change_history_report indirect_report_bitset custom_reports_on_new_framework trax_federal_and_direct_deposit_editing verify_email project_tracking employee_project_hours_report exempt_non_exempt import_state_tax import_ytd_files state_ui_options signed_document_folders payroll_admin_render payroll_customer_configuration payroll_company_taxes eligibility_groups aca_2019_migration payroll_settings payroll_w4_2020 payroll_info_checkup_report payroll_update_summary_report remittance_id_import_example remittance_id trax_add_employee_form wysiwyg_versioning job_share_image qf_react_conversion_employee performanceStage1 time_off_new_emails autosync_enabled_for_new_clients employeePerformanceReport position_form login_flow future_scheduling timesheet_change_history hide_birthday geolocation payroll_other_post_tax_nbd_cld employeePerformanceReportTrends payroll_plaid_integration cq_collaborators signup_user celebration_notifications darth_huggles_updated_reports timesheet_entries enps_sentiment_tags payroll_setup_tour mx_notifications hiring_maintenance_candidates_list enps_sentiment_top_5 eligibility_groups_release payroll_implementation_checklist payroll_missing_info_terminated_employees_wizard advancedApprovalPaths2 testFeatureTwo reportsCategoryList reportsResponseRateModal reportsShareModalRefactor timeOffRelabel variablePlanMigrationModal eeo1Categories newPaystub nonExemptWarningModals newTimesheetDetailsModal tinyMceCopyPaste remittanceId anybodyClock timesheetChange timeTrackingFutureScheduling zeroWage reportScheduler reportTotalFormatterUpdates">
+	<!-- Google Tag Manager -->
+<script>
+	dataLayer = [{
+		'postLogin': "true",
+		'trial': "false",
+		'grandfathered': "false",
+		'subscriber': "false",
+		'payroll': "false",
+		'performance': "false",
+		'role': "",
+		'accountStatus': "Subscriber",
+		'userId': "72746-"
+	}];
+</script>
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-ZC3S" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-ZC3S');</script>
+<!-- End Google Tag Manager -->
+	
+
+<script type="text/javascript">
+	var GLOBAL_DATEPICKER_MASK = "dd\x2Fmm\x2Fyy";
+	var BASE_DOMAIN = "bamboohr.com";
+	var COMPANY = "Nexus Innovations";
+</script>
+
+<svg style="position: absolute; left: -9999px;" xmlns="http://www.w3.org/2000/svg" width="0" height="0" viewBox="0 0 10 15" version="1.1">
+	<symbol id="Arrow">
+		<path d="M2.28 3L4.08 1.22 3.54 0 0 3.5 3.54 6.99 4.09 5.77 2.3 4 8 4 8 3 2.28 3Z"></path>
+	</symbol>
+
+	<symbol id="Dept">
+		<path d="M4.5 11C2 11 0 12.7 0 15L9 15C9 12.7 7 11 4.5 11ZM4.5 10C6.4 10 8 8.4 8 6.5 8 4.6 6.4 3 4.5 3 2.6 3 1 4.6 1 6.5 1 8.4 2.6 10 4.5 10Z" fill="#AAAAAA"></path>
+		<path d="M6.5 2.4C7.3 1 8.8 0 10.5 0 13 0 15 2 15 4.5 15 7 13 9 10.5 9 9.8 9 9.1 8.8 8.5 8.5 8.9 7.9 9.1 7.1 9.1 6.3 9.1 4.6 8 3.1 6.5 2.4ZM8 11C9.1 10.4 10.4 10 11.8 10 15.2 10 18 12.2 18 15L7.9 15 10.2 15C10.2 13.3 9.4 11.9 8 11Z" fill="#D4D4D4"></path>
+	</symbol>
+
+	<symbol id="Facebook">
+		<path d="M16.9 19.09L14 19.09 14 14.92 16.9 14.92 16.9 11.36C16.9 8.57 18.61 6 22.56 6 24.16 6 25.34 6.16 25.34 6.16L25.25 10.05C25.25 10.05 24.04 10.04 22.73 10.04 21.3 10.04 21.08 10.73 21.08 11.88 21.08 12.79 21.08 9.94 21.08 14.92L25.36 14.92 25.18 19.09 21.08 19.09 21.09 30.43 16.9 30.43 16.9 19.09 16.9 19.09Z"></path>
+	</symbol>
+
+	<symbol id="Jobs-Complete">
+		<path d="M80,40 C80,17.9695431 62.0304569,0 40,0 C17.9695431,0 0,17.9695431 0,40 C0,62.0304569 17.9695431,80 40,80 C62.0304569,80 80,62.0304569 80,40 L80,40 Z M5.9,39.9 C5.9,21.2253731 21.1238806,5.9 39.9,5.9 C58.6761194,5.9 73.9,21.1238806 73.9,39.9 C73.9,58.6761194 58.5746269,73.9 39.9,73.9 C21.2253731,73.9 5.9,58.5746269 5.9,39.9 L5.9,39.9 Z"></path>
+		<path d="M55,32.2857143 L35.6122449,51.6734694 L31.3265306,47.3877551 L25,41.0612245 L29.2857143,36.7755102 L35.6122449,43.1020408 L50.7142857,28 L55,32.2857143 L55,32.2857143 Z"></path>
+	</symbol>
+
+	<symbol id="Jobs-Icon">
+		<path d="M5 24L27 24 27 26 5 26 5 24 5 24ZM5 28L24 28 24 30 5 30 5 28 5 28ZM5 32L27 32 27 34 5 34 5 32 5 32ZM5 36L19 36 19 38 5 38 5 36 5 36Z"></path>
+		<path d="M35 11L35 4 37 3C36.7 2.5 36.4 2 36 2L27 2C26.5 2 26.2 2.5 26 3L28 4 28 11 25 15C24.8 15.5 25.2 16.1 26 16 28 16 30.3 16.1 30 16L30 20 31.5 22.3 32.7 20 32.7 16C32.4 16.1 36.8 16.1 37 16 37.7 16.1 38.1 15.5 38 15L35 11 35 11Z" transform="translate(31.450509, 12.135888) rotate(20.000000) translate(-31.450509, -12.135888)"></path>
+		<path d="M34 19.6C34.7 19.9 35.5 20.2 36 20.4L36 43C36 44.1 35.1 45 34 45L2 45C0.9 45 0 44.1 0 43L0 8C0 6.9 0.9 6 2 6L27.6 6 26.7 8.5 22.8 11.1C21.2 12.2 22 13.2 22.2 13.9 22.2 13.9 22.2 14 22.3 14L2 14 2 43 34 43 34 19.6Z"></path>
+	</symbol>
+
+	<symbol id="LinkedIn">
+		<path d="M7.73 28.59L12.72 28.59 12.72 13.43 7.73 13.43 7.73 28.59 7.73 28.59 7.73 28.59 7.73 28.59ZM15.48 28.59L20.46 28.59 20.46 19.92C20.46 19.48 20.49 19.05 20.63 18.73 20.98 17.85 21.81 16.95 23.18 16.95 24.99 16.95 25.71 18.29 25.71 20.27L25.71 28.59 30.69 28.59 30.69 19.7C30.69 15.19 28.23 13.09 24.95 13.09 22.26 13.09 21.08 14.56 20.43 15.57L20.46 15.57 20.46 13.43 15.48 13.43C15.54 14.81 15.48 28.13 15.48 28.13L15.48 28.59 15.48 28.59ZM10.23 11.43C11.96 11.43 13.05 10.3 13.05 8.89 13.01 7.45 11.96 6.35 10.26 6.35 8.55 6.35 7.44 7.45 7.44 8.89 7.44 10.3 8.52 11.43 10.19 11.43L10.23 11.43 10.23 11.43 10.23 11.43 10.23 11.43Z"></path>
+	</symbol>
+
+	<symbol id="Loc" fill="#AAAAAA">
+		<path d="M8.54 1.46C7.56 0.49 6.38 0 5 0 3.62 0 2.44 0.49 1.46 1.46 0.49 2.44 0 3.62 0 5 0 5.71 0.11 6.29 0.32 6.75L3.89 14.31C3.98 14.52 4.14 14.69 4.34 14.81 4.55 14.94 4.77 15 5 15 5.23 15 5.45 14.94 5.66 14.81 5.86 14.69 6.02 14.52 6.12 14.31L9.68 6.75C9.89 6.29 10 5.71 10 5 10 3.62 9.51 2.44 8.54 1.46L8.54 1.46ZM6.77 6.77C6.28 7.26 5.69 7.5 5 7.5 4.31 7.5 3.72 7.26 3.23 6.77 2.74 6.28 2.5 5.69 2.5 5 2.5 4.31 2.74 3.72 3.23 3.23 3.72 2.74 4.31 2.5 5 2.5 5.69 2.5 6.28 2.74 6.77 3.23 7.26 3.72 7.5 4.31 7.5 5 7.5 5.69 7.26 6.28 6.77 6.77L6.77 6.77Z"></path>
+	</symbol>
+
+	<symbol id="Logo">
+		<path fill="#AFAFAF" d="M25.89 5.71L25.87 5.71C25.28 5.02 24.36 4.21 22.79 4.21 20.21 4.21 18.26 6.1 18.26 8.72 18.26 11.48 20.35 13.26 22.7 13.26 24.16 13.26 25.22 12.57 25.86 11.83L25.89 11.83 25.89 12.96 27.32 12.96 27.32 4.49 25.89 4.49 25.89 5.71 25.89 5.71ZM22.9 12.03C20.77 12.03 19.74 10.34 19.74 8.72 19.74 7.09 20.77 5.43 22.93 5.43 24.63 5.43 26.02 6.75 26.02 8.77 26.02 10.68 24.52 12.03 22.9 12.03L22.9 12.03ZM38.46 4.21C36.96 4.21 35.91 5.11 35.48 5.96 35.12 4.97 34.02 4.21 32.66 4.21 31.54 4.21 30.66 4.79 30.08 5.55L30.05 5.55 30.05 4.49 28.62 4.49 28.62 12.96 30.05 12.96 30.05 8.26C30.05 6.49 30.97 5.46 32.41 5.46 33.69 5.46 34.47 6.52 34.47 7.92L34.47 12.96 35.91 12.96 35.91 8.26C35.91 6.31 37.05 5.46 38.26 5.46 39.72 5.46 40.33 6.61 40.33 7.92L40.33 12.96 41.76 12.96 41.76 8.03C41.76 5.53 40.4 4.21 38.46 4.21M57.58 4.21C54.98 4.21 52.96 6.1 52.96 8.72 52.96 11.28 54.97 13.26 57.58 13.26 60.25 13.26 62.2 11.21 62.2 8.72 62.2 6.15 60.27 4.21 57.58 4.21L57.58 4.21ZM57.58 11.99C55.92 11.99 54.44 10.63 54.44 8.72 54.44 6.84 55.74 5.46 57.58 5.46 59.48 5.46 60.72 6.93 60.72 8.72 60.72 10.57 59.41 11.99 57.58 11.99L57.58 11.99ZM67.73 4.21C65.14 4.21 63.12 6.1 63.12 8.72 63.12 11.28 65.12 13.26 67.73 13.26 70.41 13.26 72.35 11.21 72.35 8.72 72.35 6.15 70.42 4.21 67.73 4.21L67.73 4.21ZM67.73 11.99C66.08 11.99 64.6 10.63 64.6 8.72 64.6 6.84 65.89 5.46 67.73 5.46 69.63 5.46 70.88 6.93 70.88 8.72 70.88 10.57 69.56 11.99 67.73 11.99L67.73 11.99ZM79.12 8.12L74.54 8.12 74.54 4.52 73.49 4.52 73.49 12.96 74.54 12.96 74.54 9.06 79.12 9.06 79.12 12.96 80.17 12.96 80.17 4.52 79.12 4.52 79.12 8.12M85.18 9.34C86.27 9.12 87.18 8.2 87.18 6.99 87.18 5.83 86.41 4.52 84.26 4.52L81.77 4.52 81.77 12.96 82.82 12.96 82.82 9.43 83.97 9.43 86.57 12.96 87.9 12.96 85.18 9.34 85.18 9.34ZM82.82 8.49L82.82 5.46 84.38 5.46C85.49 5.46 86.09 6 86.09 6.99 86.09 7.81 85.53 8.49 84.39 8.49L82.82 8.49 82.82 8.49ZM88.18 4.52L89.55 4.52 89.55 4.73 88.99 4.73 88.99 6.39 88.74 6.39 88.74 4.73 88.18 4.73 88.18 4.52M90.78 5.84L91.36 4.52 91.67 4.52 91.76 6.39 91.51 6.39 91.45 4.88 90.88 6.11 90.66 6.11 90.09 4.88 90.04 6.39 89.78 6.39 89.87 4.52 90.19 4.52 90.78 5.84M47.55 4.11C45.89 4.11 45 4.67 44.38 5.28L44.21 5.46 44.21 0.84 42.77 0.84 42.77 8.93C42.77 11.68 44.93 13.39 47.41 13.39 50.14 13.39 52.2 11.33 52.2 8.68 52.2 6.23 50.05 4.11 47.55 4.11L47.55 4.11ZM47.41 12.11C45.61 12.11 44.08 10.71 44.08 8.85 44.08 6.98 45.37 5.45 47.44 5.45 49.51 5.45 50.74 7.09 50.74 8.81 50.74 10.69 49.44 12.11 47.41 12.11L47.41 12.11ZM12.58 4.11C10.92 4.11 10.03 4.67 9.41 5.28L9.24 5.46 9.24 0 7.8 0 7.8 8.93C7.8 11.68 9.96 13.39 12.44 13.39 15.17 13.39 17.23 11.33 17.23 8.68 17.23 6.23 15.08 4.11 12.58 4.11L12.58 4.11ZM12.44 12.11C10.64 12.11 9.11 10.71 9.11 8.85 9.11 6.98 10.4 5.45 12.47 5.45 14.54 5.45 15.77 7.09 15.77 8.81 15.77 10.69 14.47 12.11 12.44 12.11L12.44 12.11ZM7.12 5.93C7.12 5.93 6.5 5.81 5.98 5.73 5.39 5.65 5.12 5.56 4.36 5.26 3.6 4.95 2.92 4.21 2.24 3.38 1.57 2.56 0 1.26 0 1.26 0 1.26 0.49 1.29 0.98 1.41 1.38 1.51 2.43 1.84 3.52 2.39 3.76 2.52 3.89 2.6 4.13 2.74 4.49 2.96 4.87 3.28 5.23 3.64 5.66 4.07 6.03 4.41 6.35 4.79 6 4.16 5.1 1.91 3.34 0.04 3.17-0.14 4.56 0.7 4.92 1.08 6 2.19 6.11 2.81 6.49 3.88L7.12 5.93"></path>
+	</symbol>
+
+	<symbol id="Lock">
+		<path d="M1 3.28L1 5.01 2.11 5.01 2.11 3.28C2.11 2.13 2.99 1.19 4.06 1.19 5.13 1.19 6 2.13 6 3.28L6 5.01 7.12 5.01 7.12 3.28C7.12 1.47 5.74 0 4.06 0 2.37 0 1 1.47 1 3.28Z" fill="#A8A8A8"></path>
+		<rect fill="#A7A9A6" x="0" y="6" width="8" height="5"></rect>
+	</symbol>
+
+	<symbol id="Twitter">
+		<path d="M31.94 11.26C31.02 11.64 29.72 12.45 28.69 12.56 29.62 11.6 31.55 10.12 31.93 9 30.94 9.55 29.17 10.31 28 10.53 27.07 9.59 25.74 9.01 24.27 9.01 21.44 9.01 19.15 11.16 19.15 13.81 19.15 14.18 19.2 14.55 19.28 14.9 15.03 14.7 11.26 12.79 8.74 9.89 8.3 10.6 8.04 11.42 8.04 12.3 8.04 13.96 9.85 15.78 11.22 16.64 10.38 16.62 8.69 16.05 8 15.69L8 15.75C8 18.07 10.67 20.01 13.01 20.45 12.58 20.56 11.23 20.62 10.76 20.62 10.43 20.62 10.11 20.59 9.8 20.53 10.45 22.44 13.56 23.89 15.8 23.93 14.05 25.22 10.62 25.91 8.22 25.91 7.81 25.91 7.4 25.89 7 25.85 9.26 27.21 11.95 28 14.84 28 24.25 28 29.4 22.05 29.4 15.72 29.4 15.51 29.4 15.3 29.39 15.1 30.38 14.42 31.25 12.22 31.94 11.26"></path>
+	</symbol>
+
+</svg>
+
+<link href="./BambooHR_files/css" rel="stylesheet" type="text/css">
+
+<div id="sessionMessage"><div style="z-index: 1030; height: 0px;"><div style="transition: transform 500ms cubic-bezier(0.29, 0, 0.4, 1) 0s, opacity 500ms ease-in-out 0s; transform: translate(0px, -68px); opacity: 0; pointer-events: none;"><div class="fab-Slidedown--bee055c6 fab-Slidedown--info--5b3b49af"><span class="fab-Slidedown__icon--20c3a7e7"><svg focusable="false" pointer-events="none" width="21" height="21" class="css-7qw58u-Icon"><use xlink:href="/images/fabric.94a3b6be.dist.svg#fab-info-circle-21x21"></use></svg></span><span class="fab-Slidedown__text--c71ae9c5"></span><button class="fab-DismissButton" tabindex="0" type="button"><svg focusable="false" pointer-events="none" width="12" height="12" class="css-7qw58u-Icon"><use xlink:href="/images/fabric.94a3b6be.dist.svg#fab-x-12x12"></use></svg></button></div></div></div></div>
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-8 ResAts__header">
+			<a href="https://nexusinno.bamboohr.com/jobs">
+									
+							
+		<img src="./BambooHR_files/cropped.jpg" alt="Nexus Innovations" style="max-width:300px;width:85px;">
+	
+									<h1 class="acc-out-of-view">Nexus Innovations</h1>
+							</a>
+		</div>
+
+		<div class="col-xs-12 col-sm-4 ResAts__social">
+								</div>
+
+	</div>
+
+<script src="./BambooHR_files/api.js.téléchargement"></script>
+
+<script type="text/javascript">
+	var GLOBAL_VALID_EXTENSIONS=["pdf","doc","docx","xls","xlsx","csv","jpg","jpeg","tif","tiff","gif","png","bmp","txt","rtf","json"];
+	var GLOBAL_DATE_MASK="dd\x2Fmm\x2Fyyyy";
+	var GLOBAL_DATEPICKER_MASK="dd\x2Fmm\x2Fyy";
+	var GLOBAL_THOUSANDS_SEPARATOR=",";
+	var GLOBAL_DECIMAL_CHAR=".";
+	var GLOBAL_CURRENCY_SYMBOL="\x24";
+	var CSRF_TOKEN ="";
+</script>
+
+
+<div class="ResAts__card  col-md-8  baseColorBg-before js-jobs-left">
+
+		<div class="ResAts__card-content">
+		<div class="row">
+			<div class="col-xs-12 ResAts__breadcrumb">
+				<ba-icon class="ResAts__breadcrumb-arrow" name="fab-arrow-left-8x7"><svg focusable="false" pointer-events="none" width="8" height="7" class="css-7qw58u-Icon"><use xlink:href="/images/fabric.94a3b6be.dist.svg#fab-arrow-left-8x7"></use></svg></ba-icon><a class="fab-Link fab-Link--muted ResAts__breadcrumb-link" href="https://nexusinno.bamboohr.com/jobs?source=other">Job Openings</a>			</div>
+			<div class="col-xs-12 col-sm-8 col-md-12">
+				<h2>Développeur.se Stagiaire - Été 2021</h2>
+								<span class="ResAts__card-subtitle">Dev custom · Montréal, Quebec</span>
+							</div>
+							<div class="col-xs-12 col-sm-4 ResAts__applyButtonWrapper">
+										<button class="fab-Button fab-Button--biggie fab-Button--width100 js-jobs-action ResAts__applyButton hideOnDesktop fl-right" type="button">Apply for This Job</button>
+									</div>
+					</div>
+		<div class="row ResAts__positionDetails">
+						<div class="ResAts__positionDetails-detail col-xs-12 col-sm-3">
+				<span class="i2b">Department</span>
+				<span class="i2b"><strong>Dev custom</strong></span>
+			</div>
+			
+			<div class="ResAts__positionDetails-detail col-xs-12 col-sm-3">
+				<span class="i2b">Employment Type</span>
+				<span class="i2b"><strong>Stagiaire</strong></span>
+			</div>
+
+						<div class="ResAts__positionDetails-detail col-xs-12 col-sm-3">
+				<span class="i2b">Minimum Experience</span>
+				<span class="i2b"><strong>Entry-level</strong></span>
+			</div>
+			
+					</div>
+	</div>
+						<div class="ResAts__Viewport js-jobs-viewport js-chosen-container" style="height: 1166px;">
+
+			<div class="ResAts__Viewport-content js-jobs-content ">
+
+				<div class="ResAts__page ResAts__description js-jobs-page js-jobs-description">
+
+					<div class="ResAts__card-content">
+						<div class="row">
+							<div class="col-xs-12 BambooRichText">
+								<p><span style="font-size: 18px;">QUELQUES MOTS SUR NEXUS</span></p>
+<p>&nbsp;</p>
+<p>Nexus Innovations est une jeune entreprise montréalaise en génie logiciel comptant une cinquantaine d’employé.e.s. Nous croyons fondamentalement que le bien-être des employé.e.s génère de la valeur ajoutée pour nos partenaires. Ainsi, notre centre de développement, complètement rénové, offre un environnement de travail optimal. Nos pratiques se basent sur l’agilité et s’adaptent aux besoins. Notre culture d’entreprise compte parmi les priorités chez Nexus.</p>
+<p>Nous aimerions pouvoir collaborer avec des talents authentiques, passionné.e.s et engagé.e.s pour se joindre à son équipe comme stagiaires. Sous la supervision d’un développeur ou développeuse mentor, le ou la stagiaire aura la chance de perfectionner ses talents, ses connaissances et&nbsp;de vivre une expérience professionnelle enrichissante&nbsp;dans une compagnie à son image.</p>
+<p>Il ou elle contribuera à livrer des applications web sur mesure dans une méthodologie agile, en participant à toutes les étapes du processus (de l’analyse au déploiement, en passant par la conception et les tests). Chez Nexus, le développement logiciel est organisé en petites équipes de travail, donc la contribution de chacun est significative.</p>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px;">RESPONSABILITÉS</span></p>
+<ul>
+<li>Participer aux phases de développement, tester, déployer et entretenir les applications web</li>
+<li>Participer à la conception des nouvelles fonctionnalités</li>
+<li>Analyser les besoins des nouvelles fonctionnalités</li>
+<li>Gérer les priorités, les délais et produits livrables des projets individuels</li>
+<li>Faire exactement le même travail que les employé.e.s à temps plein</li>
+</ul>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px;">QUALIFICATIONS</span></p>
+<ul>
+<li>Avoir complété au moins 4 sessions d’une formation universitaire en informatique ou en génie logiciel, ou un DEC en informatique + 2 sessions universitaires</li>
+<li>Montrer des aptitudes pour la communication verbale et la vulgarisation de concepts techniques</li>
+<li>&nbsp;Faire preuve de dynamisme, d’esprit d’équipe et d’une grande autonomie</li>
+<li>Posséder une grande curiosité d’affaires</li>
+</ul>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px;">COMPÉTENCES TECHNIQUES</span></p>
+<p>Avoir une expérience minimale ou un intérêt d’apprendre les outils / technologies suivantes:</p>
+<ul>
+<li>Backend : C#, .NET Framework, .NET Core</li>
+<li>Frontend: Javascript, ES6, TypeScript, Angular, React, HTML5, CSS, Node modules</li>
+<li>Outils: Visual Studio, VS Code, Git</li>
+<li>Devops: TeamCity, VisualStudio.com, Docker</li>
+<li>BD: SQL Server, MongoDB, RavenDB</li>
+<li>Gestion de projet: Agilité, Scrum, Jira, VSTS</li>
+</ul>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px;">POURQUOI FAIRE UN STAGE CHEZ NOUS?</span></p>
+<ul>
+<li>Environnement axé sur le travail d’équipe et esprit de startup</li>
+<li>Outils technologiques à la fine pointe</li>
+<li>Lunch &amp; Learn technos pour pour parfaire les connaissances</li>
+<li>Mentors à l’écoute et one-on-one tous les mois</li>
+<li>Télémédecine</li>
+<li>Deux heures par semaine allouées au sport afin d’encourager l’activité physique</li>
+<li>Une foule d’activités et de 5 à 7 pour rassembler l’équipe, même en télétravail<span>&nbsp;</span></li>
+</ul>
+							</div>
+						</div>
+					</div>
+
+										<div class="ResAts__applyButtonWrapper">
+						<button class="fab-Button fab-Button--biggie fab-Button--width100 js-jobs-action ResAts__applyButton hideOnDesktop" type="button">Apply for This Job</button>
+					</div>
+					
+				</div>
+
+				<div class="ResAts__page ResAts__application ResAts__page--footer js-jobs-page js-jobs-application" style="height: auto;">
+
+					<svg style="position: absolute; left: -9999px;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="0" width="0">
+						<defs>
+
+							<lineargradient x1="50%" y1="0%" x2="50%" y2="100%" id="linkedInGradient">
+								<stop stop-color="#0F8EBF" offset="0%"></stop>
+								<stop stop-color="#0174A1" offset="100%"></stop>
+							</lineargradient>
+
+							<lineargradient x1="50%" y1="0%" x2="50%" y2="100%" id="twitterGradient">
+								<stop stop-color="#2DACE2" offset="0%"></stop>
+								<stop stop-color="#2497CA" offset="100%"></stop>
+							</lineargradient>
+
+						</defs>
+
+						<symbol id="LinkedIn-small">
+							<rect stroke="#0074A2" fill="url(#linkedInGradient)" x="0" y="0" width="16" height="16" rx="3"></rect>
+							<path d="M2.54254545,13.5810909 L4.99345455,13.5810909 L4.99345455,6.12872727 L2.54254545,6.12872727 L2.54254545,13.5810909 Z M3.768,5.14181818 C4.62254545,5.14181818 5.15490909,4.58618182 5.15490909,3.89309091 C5.13890909,3.184 4.62254545,2.64436364 3.78472727,2.64436364 C2.94618182,2.64436364 2.39781818,3.184 2.39781818,3.89309091 C2.39781818,4.58618182 2.92945455,5.14181818 3.752,5.14181818 L3.768,5.14181818 L3.768,5.14181818 Z" fill="#FFFFFF"></path>
+							<path d="M6.34981818,13.5810909 L8.80072727,13.5810909 L8.80072727,9.31927273 C8.80072727,9.104 8.81672727,8.888 8.88218182,8.73381818 C9.05890909,8.30181818 9.46254545,7.85527273 10.1396364,7.85527273 C11.0261818,7.85527273 11.3810909,8.51781818 11.3810909,9.48945455 L11.3810909,13.5810909 L13.832,13.5810909 L13.832,9.21163636 C13.832,6.992 12.6225455,5.95854545 11.0101818,5.95854545 C9.688,5.95854545 9.10763636,6.68363636 8.78472727,7.17672727 L8.80072727,7.17672727 L8.80072727,6.12872727 L6.34981818,6.12872727 C6.38254545,6.80654545 6.34981818,13.3556364 6.34981818,13.3556364 L6.34981818,13.5810909" fill="#FFFFFF"></path>
+						</symbol>
+
+						<symbol id="Twitter-positive">
+							<path fill="#1E9BCF" d="M16,3.46071578 C15.412081,3.70735496 14.5794348,4.2264444 13.9159945,4.3019657 C14.5134731,3.68249985 15.7514489,2.72271016 15.9961761,2 C15.3623708,2.35466332 14.2219036,2.84794169 13.4733823,2.98655673 C12.8749477,2.38429826 12.0222262,2.00860369 11.077732,2.00860369 C9.26522077,2.00860369 7.79494533,3.39475414 7.79494533,5.104977 C7.79494533,5.34779232 7.82458027,5.58391588 7.88002629,5.81047978 C5.15265579,5.68142439 2.73310629,4.44918444 1.11465615,2.57549143 C0.831690267,3.03244309 0.670132043,3.56491605 0.670132043,4.13180379 C0.670132043,5.20630937 1.82876262,6.3831033 2.70920715,6.93756348 C2.17099839,6.92226803 1.08597718,6.55422119 0.643365,6.32192149 L0.643365,6.36111609 C0.643365,7.86198243 2.35358786,9.1133417 3.85541017,9.39821951 C3.58009201,9.46896098 2.71111908,9.50624365 2.41190177,9.50624365 C2.19967736,9.50624365 1.99414471,9.48712434 1.79434785,9.45079763 C2.21114895,10.6811256 4.21102946,11.621796 5.64784609,11.6466511 C4.52363028,12.4773854 2.32108502,12.9266894 0.783891976,12.9266894 C0.518133477,12.9266894 0.257154807,12.9123499 0,12.8836709 C1.45306805,13.7622035 3.17858637,14.2746012 5.0322041,14.2746012 C11.0700842,14.2746012 14.3719902,10.4325745 14.3719902,6.34008484 C14.3719902,6.20624963 14.3691223,6.07241441 14.3624305,5.94049113 C15.0038836,5.50361475 15.5602557,4.0811376 16,3.46071578"></path>
+						</symbol>
+
+					</svg>
+
+					<div class="ResAts__card-content">
+
+						<div class="jobsApp submitOverlay js-jobs-overlay">
+							<h3 class="applyFormHeader jobsAppHeader">Apply for this Position</h3>
+							<form id="applicationForm" class="candidateApplyForm jobsAppForm candidateInfoForm" method="POST" action="https://nexusinno.bamboohr.com/jobs/view.php?id=59&amp;source=other" novalidate="true">
+								<input type="hidden" name="applicantHash" value="af80cfd3a4428dd07dee7155f8a978457e237f8f">
+								<input type="hidden" name="eeoOnly" value="off" id="eeoOnly">
+								<input type="hidden" name="scoreV3" value="" id="scoreV3">
+								<input type="hidden" name="positionHash" value="945698" id="positionHash">
+								<div id="js-candidateApplyForm-app"><fieldset class="fab-FormSection CandidateForm__section"><div class="fab-FormRow CandidateForm__row"><div class="fab-FormColumn CandidateField CandidateField--firstName"><label class="fab-Label fab-Label--required" for="firstName">First Name</label><div class="fab-InputWrapper CandidateField__inputWrapper CandidateField__inputWrapper--firstName"><input class="fab-TextInput fab-TextInput--width100" id="firstName" maxlength="255" name="firstName" required="" type="text" value=""></div></div><div class="fab-FormColumn CandidateField CandidateField--lastName"><label class="fab-Label fab-Label--required" for="lastName">Last Name</label><div class="fab-InputWrapper CandidateField__inputWrapper CandidateField__inputWrapper--lastName"><input class="fab-TextInput fab-TextInput--width100" id="lastName" maxlength="255" name="lastName" required="" type="text" value=""></div></div></div><div class="fab-FormRow CandidateForm__row"><div class="fab-FormColumn CandidateField CandidateField--email"><label class="fab-Label fab-Label--required" for="email">Email</label><div class="fab-InputWrapper CandidateField__inputWrapper CandidateField__inputWrapper--email"><input class="fab-TextInput fab-TextInput--width100" id="email" maxlength="255" name="email" required="" type="text" value=""></div></div></div><div class="fab-FormRow CandidateForm__row"><div class="fab-FormColumn CandidateField CandidateField--phone"><label class="fab-Label fab-Label--required" for="phone">Phone</label><div class="fab-InputWrapper CandidateField__inputWrapper CandidateField__inputWrapper--phone"><input class="fab-TextInput fab-TextInput--width100" id="phone" maxlength="255" name="phone" required="" type="text" value=""></div></div></div></fieldset><fieldset class="fab-FormSection CandidateForm__section"><div class="fab-FormRow CandidateForm__row"><div class="fab-FormColumn CandidateField CandidateField--resumeFileId"><label class="fab-Label  " for="resumeFileId">Resume</label><div class="jss1" style="min-height: 34px;"><div class="jss12"><div class="jss14"><button class="fab-Button fab-Button--outline" tabindex="0" type="button"><span class="fab-Button__text">Choose File</span></button><div class="jss15"><svg focusable="false" pointer-events="none" width="16" height="20" class="css-7qw58u-Icon"><use xlink:href="/images/fabric.94a3b6be.dist.svg#fab-file-unknown-black-16x20"></use></svg></div><div class="jss16">No file selected</div></div><input accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.jpg,.jpeg,.tif,.tiff,.gif,.png,.bmp,.txt,.rtf,.json" class="jss13" type="file"></div><input name="resumeFileId" type="hidden" value=""></div></div></div></fieldset><fieldset class="fab-FormSection CandidateForm__section"><div class="fab-FormRow CandidateForm__row"><div class="fab-FormColumn CandidateField CandidateField--linkedinUrl"><label class="fab-Label" for="linkedinUrl">LinkedIn Profile URL</label><div class="fab-InputWrapper CandidateField__inputWrapper CandidateField__inputWrapper--linkedinUrl"><input class="fab-TextInput fab-TextInput--width100 fab-TextInput--withNub" id="linkedinUrl" maxlength="255" name="linkedinUrl" type="text" value=""><span class="fab-TextInputNub"><span class="fab-TextInputNub__icon"><svg focusable="false" pointer-events="none" width="12" height="11" class="css-7qw58u-Icon"><use xlink:href="/images/fabric.94a3b6be.dist.svg#fab-linkedin-12x11"></use></svg></span></span></div></div></div></fieldset></div>
+							<input type="hidden" name="CSRFToken" value=""></form>
+						</div>
+					</div>
+
+									</div>
+
+
+				<div class="ResAts__page ResAts__success js-jobs-page js-jobs-success" style="height: auto;">
+
+					<div class="ResAts__card-content">
+												<div class="JobsBlankState JobsBlankState--compact">
+							<div class="JobsBlankState__icon">
+								<ba-icon brand="true" name="fab-check-circle-64x64"><svg focusable="false" pointer-events="none" width="64" height="64" class="css-1nrrafc-iconBrand"><use xlink:href="/images/fabric.94a3b6be.dist.svg#fab-check-circle-64x64"></use></svg></ba-icon>
+							</div>
+							<h3 class="JobsBlankState__title">
+								Thank You
+							</h3>
+							<p class="JobsBlankState__subtitle">
+								Your application was submitted successfully.
+							</p>
+						</div>
+											</div>
+				</div>
+
+			</div>
+
+		</div>
+		<div class="ResAts__reCAPTCHA">
+		<p>
+			This site is protected by reCAPTCHA and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+		</p>
+	</div>
+</div>
+
+
+	<div class="ResAts__sideBar js-jobs-sidebar col-md-4" style="position: relative;">
+		<div class="col-md-12 ResAts__sideBar-content">
+			<div class="ResAts__card ResAts__sideBarCard clearfix">
+				<button class="fab-Button fab-Button--biggie fab-Button--width100 js-jobs-action" type="button">Apply for This Job</button>
+
+	
+	<div class="jobsShare">
+					<div class="jobsShare__Link">
+				<label class="fab-Label" for="jobShareLink">Link to this job</label>
+			</div>
+			<input id="jobShareLink" type="text" class="fab-TextInput fab-TextInput--width100 inputField linkUrl text-100 jobsShare__LinkText" readonly="" value="https://nexusinno.bamboohr.com/jobs/view.php?id=59" onclick="this.select()" aria-label="Link to share this job">
+				<a class="fab-Button fab-Button--iconOnly fab-Button--secondary fab-Button--outline fab-Button--small js-linkedin" data-via="BambooHR" data-url="https://nexusinno.bamboohr.com/jobs/view.php?id=59&amp;source=linkedin" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://nexusinno.bamboohr.com/jobs/view.php?id=59&amp;source=linkedin&amp;title=Nexus%20Innovations:%20Current%20Openings&amp;summary=&amp;source=BambooHR" rel="noopener noreferrer" target="_blank" title="LinkedIn"><ba-icon class="fab-Button__icon" name="fab-linkedin-14x13"><svg focusable="false" pointer-events="none" width="14" height="13" class="css-7qw58u-Icon"><use xlink:href="/images/fabric.94a3b6be.dist.svg#fab-linkedin-14x13"></use></svg></ba-icon></a><a class="fab-Button fab-Button--iconOnly fab-Button--secondary fab-Button--outline fab-Button--small js-twitter" data-via="BambooHR" data-url="https://nexusinno.bamboohr.com/jobs/view.php?id=59&amp;source=twitter" href="https://twitter.com/intent/tweet?hashtags=&amp;original_referer=https://nexusinno.bamboohr.com/jobs/view.php?id=59&amp;related=undefined&amp;source=tweetbutton&amp;text=Nexus%20Innovations:%20Current%20Openings&amp;url=https://nexusinno.bamboohr.com/jobs/view.php?id=59&amp;via=BambooHR" rel="noopener noreferrer" target="_blank" title="Twitter"><ba-icon class="fab-Button__icon" name="fab-twitter-14x11"><svg focusable="false" pointer-events="none" width="14" height="11" class="css-7qw58u-Icon"><use xlink:href="/images/fabric.94a3b6be.dist.svg#fab-twitter-14x11"></use></svg></ba-icon></a><a class="fab-Button fab-Button--iconOnly fab-Button--secondary fab-Button--outline fab-Button--small js-facebook" data-via="BambooHR" data-url="https://nexusinno.bamboohr.com/jobs/view.php?id=59&amp;source=facebook" rel="noopener noreferrer" target="_blank" title="Facebook"><ba-icon class="fab-Button__icon" name="fab-facebook-8x14"><svg focusable="false" pointer-events="none" width="8" height="14" class="css-7qw58u-Icon"><use xlink:href="/images/fabric.94a3b6be.dist.svg#fab-facebook-8x14"></use></svg></ba-icon></a>	</div>
+			</div>
+			<ul class="posInfoList">
+	<li class="posInfo">
+		<div class="posInfo__Title">Location</div>
+		<div class="posInfo__Value">Montréal, Quebec</div>
+	</li>
+	
+		<li class="posInfo posInfo--department">
+		<div class="posInfo__Title">Department</div>
+		<div class="posInfo__Value">Dev custom</div>
+	</li>
+		
+	<li class="posInfo posInfo--employmentType">
+		<div class="posInfo__Title">Employment Type</div>
+		<div class="posInfo__Value">Stagiaire</div>
+	</li>
+	
+		<li class="posInfo posInfo--minExperience">
+		<div class="posInfo__Title">Minimum Experience</div>
+		<div class="posInfo__Value">Entry-level</div>
+	</li>
+		
+		
+	
+		
+</ul>
+		</div>
+	</div>
+
+					 <!-- end #content -->
+</div> <!-- end .BhrPage-wrap -->
+
+	
+
+<footer role="contentinfo" class="
+SiteFooter SiteFooter--dark-theme SiteFooter--biggie-theme">
+	<div class="SiteFooter__container SiteFooter__container--main">
+		<div class="SiteFooter__wrapper SiteFooter__wrapper--outer SiteContent">
+			<div class="SiteFooter__wrapper SiteFooter__wrapper--left">
+				<span><a href="https://www.bamboohr.com/privacy-policy/" class="SiteFooter__link SiteFooter__link--privacy" target="_blank" rel="noopener external nofollow noreferrer">
+	Privacy Policy
+</a>
+
+&nbsp;·&nbsp;
+<a href="https://www.bamboohr.com/terms-of-service/" class="SiteFooter__link SiteFooter__link--terms" target="_blank" rel="noopener external nofollow noreferrer">
+	Terms of Service
+</a>
+
+</span>
+
+				<span class="SiteFooter__infoAlign">
+					<span class="SiteFooter__wrapper SiteFooter__wrapper--hidden">
+						&nbsp;&nbsp;·&nbsp;
+					</span>
+					<span class="SiteFooter__txt SiteFooter__txt--copyright">
+	© 2008–2021 BambooHR All rights reserved.
+</span>
+
+				</span>
+			</div>
+			<div class="SiteFooter__wrapper SiteFooter__wrapper--right">
+				<a href="https://www.bamboohr.com/" class="SiteFooter__link SiteFooter__link--logo" target="_blank" rel="noopener external nofollow noreferrer">
+	<ba-icon class="SiteFooter__logo" name="fab-bamboohr-logo-115x17" alt="BambooHR"><svg focusable="false" pointer-events="none" width="115" height="17" class="css-7qw58u-Icon"><use xlink:href="/images/fabric.94a3b6be.dist.svg#fab-bamboohr-logo-115x17"></use></svg></ba-icon>
+
+</a>
+
+
+			</div>
+		</div>
+	</div>
+		<div class="SiteFooter__container SiteFooter__container--actions">
+		<div class="SiteFooter__wrapper SiteFooter__wrapper--outerReverse SiteContent">
+			<div class="SiteFooter__wrapper SiteFooter__wrapper--left">
+				
+
+
+
+
+<button data-action="SiteFooterAction:primary:0:1" class="SiteFooter__action SiteFooter__action--primary fab-Button fab-Button--primary fab-Button--biggie fab-Button--dark">
+		<span class="fab-Button__icon fab-Button__icon--left">
+		<ba-icon name="fab-check-circle-18x18"><svg focusable="false" pointer-events="none" width="18" height="18" class="css-7qw58u-Icon"><use xlink:href="/images/fabric.94a3b6be.dist.svg#fab-check-circle-18x18"></use></svg></ba-icon>
+	</span>
+		<span class="fab-Button__text">
+		Submit Application
+	</span>
+</button>
+
+
+
+
+<button data-action="SiteFooterAction:cancel" class="SiteFooter__action SiteFooter__action--link fab-TextButton fab-TextButton--large fab-TextButton--dark">
+		<span class="fab-Button__text">
+		Cancel
+	</span>
+</button>
+
+
+			</div>
+			<div class="SiteFooter__wrapper SiteFooter__wrapper--right">
+				<a href="https://www.bamboohr.com/" class="SiteFooter__link SiteFooter__link--logo" target="_blank" rel="noopener external nofollow noreferrer">
+	<ba-icon class="SiteFooter__logo" name="fab-bamboohr-logo-115x17" alt="BambooHR"><svg focusable="false" pointer-events="none" width="115" height="17" class="css-7qw58u-Icon"><use xlink:href="/images/fabric.94a3b6be.dist.svg#fab-bamboohr-logo-115x17"></use></svg></ba-icon>
+
+</a>
+
+
+			</div>
+		</div>
+	</div>
+	</footer>
+
+
+
+
+
+
+<!-- END FOOTER -->
+<script type="text/javascript" src="./BambooHR_files/global.67b55449.dist.js.téléchargement"></script><div></div><div class="portal--hq6Bi"></div><div class="portal--hq6Bi"></div><div class="portal--hq6Bi"></div><div class="portal--hq6Bi"></div>
+
+
+	<script type="text/javascript" src="./BambooHR_files/placeholder.js.téléchargement"></script>
+
+
+
+
+
+	<script id="jobs-js" type="text/javascript" src="./BambooHR_files/jobs.6865acc5.dist.js.téléchargement"></script>
+
+
+<script>
+	$(function() {
+		if($('chosen').chosen != undefined) {
+			$('select:visible').chosen(bhrChosenOptions);
+		}
+		/*
+		 * Added Sep 2018 - Ben Eliason
+		 * GM-3858
+		 */
+		 if (window.checkForCookieAcceptance) {
+			 window.checkForCookieAcceptance();
+		 }
+	});
+</script>
+
+	
+<script src="./BambooHR_files/files.032b721e.dist.js.téléchargement" type="text/javascript"></script>
+<script type="text/javascript">
+fileScanTimeout = 2000;
+previewShown = false;
+offset = 0;
+doneLoading = false;
+loading = false;
+</script>
+
+
+<div id="printContainer"></div>
+
+
+
+<div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe src="./BambooHR_files/anchor.html" width="256" height="60" role="presentation" name="a-xqej9c8lcskl" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;" src="./BambooHR_files/saved_resource.html"></iframe></div></body></html>

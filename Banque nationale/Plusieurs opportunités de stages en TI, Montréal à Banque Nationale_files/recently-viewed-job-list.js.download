@@ -1,0 +1,38 @@
+﻿window.APP.MODELS.RecentlyViewedJobList = (function (BaseModel) {
+    var RecentlyViewedJobList = BaseModel.extend({
+        _construct: function (elem) {
+            this.el = elem;
+            this.config = this.el.data();
+            var self = this;
+            if (!self.config.recentlyViewedJobs && self.config.moduleName && self.config.moduleType) {
+                $.ajax({
+                    url: self.config.ajaxUrl,
+                    type: 'POST',
+                    data: ({
+                        name: self.config.moduleName,
+                        type: self.config.moduleType
+                    }),
+                    success: function (data) {
+                        self.el.replaceWith(data);
+                        return;
+                    },
+                    error: function () {
+                        return false;
+                    }
+                });
+            }
+        }
+    });
+    return RecentlyViewedJobList;
+}(window.APP.MODELS.BaseModel));
+
+$('[data-recently-viewed-jobs]').each(function () {
+    var rvjCookie = 'viewedJobs';
+    if (consentGiven(coreCategoryCookieMemberOf.viewedJobs)) {
+        window.APP.MODELS.RecentlyViewedJobList.create($(this));
+    } else {
+        if (typeof Cookies.getJSON(rvjCookie) === 'string' || typeof Cookies.getJSON(rvjCookie) === 'object') {
+            Cookies.remove(rvjCookie, { path: '/' });
+        }
+    }
+});
