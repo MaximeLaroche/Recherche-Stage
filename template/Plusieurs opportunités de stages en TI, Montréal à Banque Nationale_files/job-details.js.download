@@ -1,0 +1,129 @@
+﻿window.APP.MODELS.JobDetails = (function (BaseModel) {
+    var JobDetails = BaseModel.extend({
+        _construct: function () {
+
+            var orgId = $('.job-description').attr('data-org-id');
+            var jobId = $('.job-description').attr('data-job-id');
+            var jobsCookie = Cookies.get('savedViewedJobs');
+            var savedJobs;
+            var maxJob = 20;
+
+            //check if job is already saved
+            if (jobsCookie != null && jobsCookie != undefined) {
+                if (jobsCookie.split('-').indexOf(jobId) > -1) {
+                    $('#save-job').attr('data-job-saved', 'true');
+                    $('#save-job').addClass('saved');
+                }
+            }
+
+            $('#save-job').on('click', function () {
+                var svjCookie = 'savedViewedJobs';
+                if (!consentGiven(coreCategoryCookieMemberOf.savedViewedJobs)) {
+                    if (typeof Cookies.getJSON(svjCookie) === 'string' || typeof Cookies.getJSON(svjCookie) === 'object') {
+                        Cookies.remove(svjCookie, { path: '/' });
+                    }
+                    return true;
+                }
+
+                var viewedTime = ((new Date()).getTime() * 10000) + 621355968000000000;
+                //remove from cookie
+                if ($(this).attr('data-job-saved') == 'true') {
+                    var jobToRemove = orgId + '-' + jobId + '-';
+                    var cookie = Cookies.get(svjCookie);
+                    var newCookieVal = cookie.substr(0, cookie.indexOf(jobToRemove));
+                    var temp = cookie.substr(cookie.indexOf(jobToRemove), cookie.length - cookie.indexOf(jobToRemove));
+                    var start = nth_occurrence(temp, '|', 1);
+                    newCookieVal += temp.substr(start, temp.length - start);
+
+                    var onlyJob = (cookie.split("|").length - 1) == 0;
+                    if (onlyJob) Cookies.remove(svjCookie, { path: '/' });
+                    if (!onlyJob) {
+                        //get position of jobToRemove in cookie
+                        var jobPositionInCookie = cookie.indexOf(jobToRemove);
+
+                        //reformat cookie value
+                        if (jobPositionInCookie == 0) newCookieVal = newCookieVal.replace('|', '');
+                        if (jobPositionInCookie > 0 && start > 0) newCookieVal = newCookieVal.replace('||', '|');
+                        if (jobPositionInCookie > 0 && start == -1) newCookieVal = newCookieVal.replace('|)', '');
+
+                        //add to cookie 
+                        Cookies.set(svjCookie, newCookieVal, { expires: 30, path: '/' });
+                    }
+                    $(this).removeClass('saved').attr('data-job-saved', 'false');
+                }
+                //add to cookie
+                else {
+                    //check to see if there are existing saved jobs
+                    if (jobsCookie != null || jobsCookie != undefined) {
+                        var jobs = jobsCookie.split("|");
+                        if (jobs.length < maxJob) {
+                            savedJobs = orgId + '-' + jobId + '-' + viewedTime + '|' + jobsCookie;
+                        }
+                        else {
+                            jobs.splice(jobs.length - 1, 1);
+                            savedJobs = orgId + '-' + jobId + '-' + viewedTime + '|' + jobs.join("|");
+                        }
+                    }
+                    else savedJobs = orgId + '-' + jobId + '-' + viewedTime;
+
+                    Cookies.set(svjCookie, savedJobs, { expires: 30, path: '/' });
+                    $(this).addClass('saved').attr('data-job-saved', 'true');
+                }
+
+                var recentlyViewedJobList = '.recently-viewed-job-list';
+                $(recentlyViewedJobList).each(function () {
+                    var url = $(this).attr('data-ajax-url');
+                    var name = $(this).attr('data-module-name');
+                    var type = $(this).attr('data-module-type');
+                    var contentType = $(this).attr('data-content-type');
+                    if (contentType == 'UserSelected') {
+                        ajaxCall($(this), url, name, type);
+                    }
+                });
+            });
+
+            function nth_occurrence(string, char, nth) {
+                var first_index = string.indexOf(char);
+                var length_up_to_first_index = first_index + 1;
+
+                if (nth == 1) {
+                    return first_index;
+                } else {
+                    var string_after_first_occurrence = string.slice(length_up_to_first_index);
+                    var next_occurrence = nth_occurrence(string_after_first_occurrence, char, nth - 1);
+
+                    if (next_occurrence === -1) {
+                        return -1;
+                    } else {
+                        return length_up_to_first_index + next_occurrence;
+                    }
+                }
+            }
+
+            function ajaxCall(obj, url, name, type) {
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: ({
+                        name: name,
+                        type: type
+                    }),
+                    success: function (data) {
+                        obj.replaceWith(data);
+                        return;
+                    },
+                    error: function () {
+                        return false;
+                    }
+                });
+            }
+
+        }
+
+    });
+    return JobDetails;
+}(window.APP.MODELS.BaseModel));
+
+$('#save-job').each(function () {
+    window.APP.MODELS.JobDetails.create($(this));
+});
