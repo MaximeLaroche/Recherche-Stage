@@ -2,6 +2,7 @@
 
 \documentclass{resume} % Use the custom resume.cls style
 \usepackage{xcolor}
+\usepackage{hyperref}
 
 \usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry} % Document margins
 \newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
@@ -21,7 +22,7 @@
 		
 		{\bf Bachelor of Software Engineering} \hfill {\em 2020 - 2023} 
 		\\ Polytechnique Montréal
-		\\GPA: 3,4 \hspace{0.5cm}  Excellence scholarship received at admission.
+		\\GPA: 3,34 \hspace{0.5cm}  Excellence scholarship received at admission.
 
 		{\bf Bachelor of Electrical Engineering} \hfill {\em 2018 - 2019} 
 		\\ Polytechnique Montréal
@@ -34,6 +35,12 @@
 	%    Projects And Seminars
 	%-----------------------------------------------------------------------------------------------
 	\begin{rSection}{Projects}
+		\begin{rSubsection}{Online Scrabble game}{2021}{}{}
+			\item Collaboration with a team of six to implement an online scrabble game
+			\item Agile development
+			\item Angular used for client application, socket-IO for syncing games, NodeJS for server-side logic and MongoDB for data persistence
+			\item \url{http://maximelaroche.gitlab.io/log2990-201/#/home}
+		 \end{rSubsection}
 		\begin{rSubsection}{Autonomous Car}{2021}{}{}
 			\item Little car that can navigate in its environment using ATmega324PA microprocessor
 			\item Use of Ultrasound sensors to make sense of obstacles
@@ -103,9 +110,9 @@
 	\begin{rSection}{General knowledge}
 		
 		\begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
-			Programming languages \              & C++, Java, Python, Matlab \\
+			Programming languages \              & C++, Java, Python, Typescript, JavaScript \\
 			%Conception de machines à états   & Psoc Programmer\\
-			General tools                 & Git, MS Office, LaTeX \\
+			General tools                 & Angular, NodeJS, Git, MS Office, LaTeX \\
 			Languages & French and English
 		\end{tabular}
 		
