@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "preview": "assets/media/projects/portfolio.png",
+      "preview": "https://raw.githubusercontent.com/MaximeLaroche/Recherche-Stage/BaseAnglais/assets/media/projects/portfolio.png",
       "created_at": "2019-07-20T14:18:15.923+02:00",
       "name": "This Portfolio Web Application",
       "description": "Angular portfolio template forked from  https://github.com/ronald-hove/Angular-Portfolio-Template. Adapted it to fit my needs",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "preview": "assets/media/projects/scrabble.png",
+      "preview": "https://raw.githubusercontent.com/MaximeLaroche/Recherche-Stage/BaseAnglais/assets/media/projects/scrabble.png",
       "created_at": "2019-07-20T14:18:15.923+02:00",
       "name": "Online scrabble game",
       "description": "Collaboration with a team of six to implement an online scrabble game \nAgile development \nAngular used for client application, socket-IO for syncing games, NodeJS for server-side logic and MongoDB for data persistence\n http://maximelaroche.gitlab.io/log2990-201/#/home",

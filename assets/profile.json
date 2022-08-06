@@ -3,7 +3,7 @@
   "location": "Montréal, QC, Canada",
   "name": "Maxime Laroche",
   "phone": "+1 (514) 348-0345",
-  "avatar": "assets/media/profile pic.jpg",
+  "avatar": "https://raw.githubusercontent.com/MaximeLaroche/Recherche-Stage/BaseAnglais/assets/media/profile pic.jpg",
   "education": [
     {
       "title": "Bachelor's of Software engineering (expected graduation date: June 2023)",
