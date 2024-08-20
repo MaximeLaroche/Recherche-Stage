@@ -1,6 +1,15 @@
 {
   "work": [
     {
+      "date": "September 2023 - July 2024",
+      "title": "Dathub Operations | National Bank of Canada",
+      "description": "Help operations team handle requests\nAutomate the treatment of frequent requests",
+      "stack": [
+        "Python",
+        "SQL"
+      ]
+    },
+    {
       "date": "May 2023 - August 2023",
       "title": "Machine learning engineer | Morgan Stanley",
       "description": "Train a large language model (LLM) to tag architecture documents written in English with relevant internal security policies\nWrite security policies in OPA",
@@ -13,7 +22,7 @@
     },
     {
       "date": "May 2022 - August 2022",
-      "title": "Full Stack engineer | Morgan Stanley",
+      "title": "Full Stack developer | Morgan Stanley",
       "description": "Refactoring a website with hard coded data to rely on an SQL database to be easily able to add/remove data\nDesign of a separate web UI to allow users to edit the data\nMigration of a front end from angular to react",
       "stack": [
         "Angular",
