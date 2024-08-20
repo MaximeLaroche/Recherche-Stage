@@ -1,91 +1,93 @@
-
-
-\documentclass[french,12pt]{resume} % Use the custom resume.cls style
+\documentclass{resume} % Use the custom resume.cls style
 \usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage[utf8]{inputenc}
 
 \usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry} % Document margins
-%\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
-%\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
 \name{Maxime Laroche} % Your name
-\address{Montréal, Québec} 
-\address{(514) 348 - 0345 \\ Maxime-1.Laroche@polymtl.ca \\ \href{https://maximelaroche.github.io/portfolio}{maximelaroche.github.io/portfolio}}
+\address{Montréal, Québec} % Your address
+%\address{123 Pleasant Lane \\ City, State 12345} % Your secondary addess (optional)
+\address{(514) 348 - 0345 \\ 	mlaroche2009@gmail.com \\ \href{https://maximelaroche.github.io/portfolio}{maximelaroche.github.io/portfolio}} % Your phone number and email
 
 \begin{document}
-	\begin{rSection}{Éducation}
-		
-		{\bf Baccalauréat en génie logiciel} \hfill {\em  2020 - 2023} 
-		\\ Polytechnique Montréal.
-		\\GPA: 3,34 
-		
-		
-		{\bf Baccalauréat en génie électrique} \hfill {\em  2018 - 2019} 
-		\\ Polytechnique Montréal.
-		\\ Bourse d'excellence à l'admission.
-		\\ Changé d'orientation en cours d'étude.
-		
-	\end{rSection}
-	
-	
-	\begin{rSection}{Projets}
 
-		\begin{rSubsection}{Jeux scrabble en linge}{2021}{}{}
-			\item   Collaboration dans une équipe de 6 pour faire un jeu de scrabble en ligne
-			\item Développement agile
-			\item Angular pour le client, SocketIo pour la synchronisation, MongoDB pour la persistance des données et express (NodeJS) pour le serveur
-			\item Utilisation de Prettier et ESlint pour maintenir une bonne qualité de code
-			%\item \url{http://maximelaroche.gitlab.io/log2990-201/#/}
-		\end{rSubsection}
-		\begin{rSubsection}{Serveur TCP de Fichier}{2021}{}{}
-			\item Conception d'une application serveur client de style «Google Drive» avec Java.
-			\item Permets de faire des sauvegardes automatiques des appareils sur le réseau local, ainsi que de partager des fichiers entre les appareils du réseau.
-		\end{rSubsection}
-		 \begin{rSubsection}{Voiture autonome}{2021}{}{}
-			\item Utilisation d'un microprocesseur ATmega324PA pour qu'une petite voiture puisse naviguer dans son environnement.
-			\item La voiture analyse son environnement grâce à des capteurs ultrason et peut ainsi éviter des obstacles et changer de chemin.
-			\item Projet réalisé avec Git et C++.
-			\item Gestion de l'équipe pour assurer une bonne collaboration et le respect des échéances.
-			 
-		 \end{rSubsection}
+%----------------------------------------------------------------------------------------
+% EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Education}
+
+	{\bf Masters of Software Engineering} \hfill {\em 2023 - 2024}
+	\\ Polytechnique Montréal
+	\\GPA: 3,36 \hspace{0.5cm} Focus on artificial intelligence and data science
+
+		{\bf Bachelor of Software Engineering} \hfill {\em 2020 - 2023}
+	\\ Polytechnique Montréal
+	\\GPA: 3,40 \hspace{0.5cm} Excellence scholarship received at admission.
 
 
-		
-	\end{rSection}
-	
-	\begin{rSection}{Expérience}
+\end{rSection}
 
-		\begin{rSubsection}{Ingénieur Full Stack}{2022}{Morgan Stanley}{}{}
-			\item Conception et implémentation d'un site web avec react et du back end avec spring boot
-			\item Déploiment de base de données avec un outil basé sur liquibase
-			\item Rédaction de tests
-		\end{rSubsection}
-		
-		\begin{rSubsection}{Ingénierie de service}{2020}{Bombardier}{}{}
-			\item Conception de logiciels de collection et analyse de données pour optimiser l'organisation du travail au sein de la compagnie.
-			\item Projet fait en conception itérative. 
-			\item Apprentissage d'un langage sur le tas.
-			\item Conception d'équipement de diagnostic d'avions.
-		\end{rSubsection}
-		
-		
-		
-	\end{rSection}
-	
-	
+%--------------------------------------------------------------------------------
+%    Projects And Seminars
+%-----------------------------------------------------------------------------------------------
+\begin{rSection}{Projects}
+	\begin{rSubsection}{Sentiment analysis on american politics}{2023}{}{}
+		\item Collaboration with a team of five to implement a model that can classify opinions by political party
+		\item Use of transformers to classify text
+		\item Develop an aggregator to be able to get the overall opinion of American twitter users
+		\item Use of linear regression to determine most important keywords
+		%\item \url{http://maximelaroche.gitlab.io/log2990-201/#/home}
+	\end{rSubsection}
+	\begin{rSubsection}{Automatic translator}{2022}{}{}
+		\item Implementation of a transformer to perform automatic English to Sparql translation
+	\end{rSubsection}
 
-	
-	\begin{rSection}{Connaissances générales}
-		
-		\begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
-			Language de programmation \              & C++, Python, Java, Typescript \\
-			Outils généraux                 & MS Office, Latex, SQL, Angular, Node.JS, HTML5, git \\
-			Langues & Français et Anglais
-		\end{tabular}
-		
-	\end{rSection}
-	
-	
+\end{rSection}
+
+
+%----------------------------------------------------------------------------------------
+% WORK EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Experience}
+	\begin{rSubsection}{Dathub Operations}{September 2023 - July 2024}{National Bank of Canada}{}{}
+		\item Help operations team handle requests
+		\item Automate the treatment of frequent requests
+	\end{rSubsection}
+
+	\begin{rSubsection}{Cybersecurity and Machine learning engineer}{May - August 2023}{Morgan Stanley}{}{}
+		\item Train a Large language model (LLM) to tag architecture documents written in English with relevant internal security policies
+		\item Write security policies in OPA
+	\end{rSubsection}
+	\begin{rSubsection}{Full stack developer}{May - August 2022}{Morgan Stanley}{}{}
+		\item Design and implementation of a website + back end server using react and spring boot.
+		\item Database deployments based on liquibase
+		\item writing end to end and unit tests
+	\end{rSubsection}
+	\begin{rSubsection}{Service engineering}{January - August 2020}{Bombardier}{}{}
+		\item Design of data collection and analyzing software made to optimize workflows within the company.
+		\item Learning a new language (VBA) on the spot
+		\item Project made with iterative design
+		\item Ground support equipment design.
+	\end{rSubsection}
+
+\end{rSection}
+
+
+%----------------------------------------------------------------------------------------
+% TECHNICAL STRENGTHS SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{General knowledge}
+
+	\begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
+		Programming languages \  & Python, Typescript, Java, C++ \\
+		Languages                & French and English
+	\end{tabular}
+
+\end{rSection}
 
 \end{document}
 
